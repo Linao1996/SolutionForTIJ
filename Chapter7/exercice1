@@ -1,0 +1,19 @@
+class Apple {
+
+}
+
+public class Airplane {
+
+		Apple apple;
+	public String toString() {
+//		Apple apple;   definition can't be here!!
+		if(apple == null){
+			apple = new Apple();
+		}
+		return null;
+	}
+
+	public static void main(String[] args) {
+		System.out.println("null");
+	}
+}
