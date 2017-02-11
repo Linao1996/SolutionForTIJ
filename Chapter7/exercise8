@@ -1,0 +1,20 @@
+class A {
+	A(int marker) {
+		System.out.println("A()" + marker);
+	}
+}
+
+public class C extends A {
+	C() {
+		super(1);
+	}
+
+	C(int marker) {
+		super(marker);
+		System.out.println("C()" + marker);
+	}
+	public static void main(String[] args){
+		C c = new C(9999);
+	}
+}
+
