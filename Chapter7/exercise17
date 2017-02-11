@@ -1,0 +1,23 @@
+package pac1;
+class Amphibian{
+	public String toString(){
+		return "Amphibian";
+	}
+	static void name(Amphibian amp){
+		System.out.println(amp);
+	}
+}
+
+public class Frog extends Amphibian{
+	public String toString(){
+		return "Frog";
+	}
+	static void name(Amphibian amp){
+		System.out.println("haha");
+	}
+	public static void main(String [] args){
+		Frog frog = new Frog();
+		Amphibian.name(frog);
+		frog.name(frog);
+	}
+}
