@@ -1,0 +1,50 @@
+// reusing/Stem10.java
+// TIJ4 Chapter Reusing, Exercise 10, page 246
+/* Modify the previous exercise so that each class only has non-default 
+* constructors.
+*/
+
+class Component1{
+	public Component1(int marker) {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Component1" + marker);
+	}
+}
+
+class Component2{
+	public Component2(int marker) {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Component2" + marker);
+	}
+}
+
+class Component3{
+	public Component3(int marker) {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Component3" + marker);
+	}
+}
+
+class Root{
+	Component1 component1 = new Component1(1);
+	Component2 component2 = new Component2(2);
+	Component3 component3 = new Component3(3);
+	public Root(int marker) {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Root!" + marker);
+	}
+}
+
+public class Tree extends Root{
+	Component1 component1 = new Component1(5);
+	Component2 component2 = new Component2(6);
+	Component3 component3 = new Component3(7);
+	public  Tree(int marker){
+		super(4);
+		System.out.println("This is Tree!" + marker);
+	}
+    public static void  main(String[] args){
+    	System.out.println("Main!");
+    	Tree tree = new Tree(8);
+    }
+}
