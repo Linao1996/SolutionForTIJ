@@ -55,7 +55,7 @@ public class Detergent {
 		append("foam().");
 	}
 	public String toString(){
-		return s + " " + c;
+		return s + " " + c; //here is the crux
 	}
 	public static void main(String[] args) {
 		Detergent deter = new Detergent();
