@@ -1,0 +1,85 @@
+// reusing/Stem2.java
+// TIJ4 Chapter Reusing, Exercise 12, page 254
+// Add a proper hierarchy of dispose() methods to all the classes of exercise 9. 
+/* EX 9: Create a class called Root that contains an instance of each of the classes
+* (that you also create) named Component1, Component2 and Component3. Derive a 
+* class Stem from Root that also contains an instance of each "component." All 
+* classes should have default constructors that print a message about that class.
+*/
+class Component1 {
+	public Component1(int marker) {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Component1" + marker);
+	}
+
+	void dispose() {
+		System.out.println("component1 disposed");
+	}
+}
+
+class Component2 {
+	public Component2(int marker) {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Component2" + marker);
+	}
+
+	void dispose() {
+		System.out.println("component2 disposed");
+	}
+}
+
+class Component3 {
+	public Component3(int marker) {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Component3" + marker);
+	}
+
+	void dispose() {
+		System.out.println("component3 disposed");
+	}
+}
+
+class Root {
+	Component1 component1 = new Component1(1);
+	Component2 component2 = new Component2(2);
+	Component3 component3 = new Component3(3);
+
+	public Root(int marker) {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Root!" + marker);
+	}
+
+	void dispose() {
+		System.out.println("Root disposed");
+		component3.dispose();
+		component2.dispose();
+		component1.dispose();
+	}
+}
+
+public class Tree extends Root {
+	Component1 component1 = new Component1(5);
+	Component2 component2 = new Component2(6);
+	Component3 component3 = new Component3(7);
+
+	public Tree(int marker) {
+		super(4); // Note that this line would be executed first!! then the top
+					// three lines,and last the following line!
+		System.out.println("This is Tree!" + marker);
+	}
+
+	void dispose() {
+		System.out.println("Tree disposed");
+		component3.dispose();
+		component2.dispose();
+		component1.dispose();
+		super.dispose();
+
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Main!");
+		Tree tree = new Tree(8);
+		tree.dispose();
+	}
+}
