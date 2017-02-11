@@ -1,0 +1,41 @@
+class Engine {
+	public void service(){
+		System.out .println("Into service");
+	}
+}
+class Wheel{
+	public void inflate(){
+		
+	}
+}
+
+class Window{
+	public void rollup(){
+		
+	}
+}
+class Door{
+	Window window = new Window();
+	public void open(){
+		
+	}
+}
+public class Car{
+	Engine engine = new Engine();
+	Wheel[] wheels = new Wheel[4];
+	Door left = new Door();
+	Door right = new Door();
+	Car(){
+		for(Wheel wh:wheels){
+			wh = new Wheel();
+		}
+		System.out.println("car assembled");
+	}
+
+	public static void main(String[] args){
+		Car car = new Car();
+		car.engine.service();
+		car.wheels[3].inflate();
+		car.left.window.rollup();
+	}
+}
