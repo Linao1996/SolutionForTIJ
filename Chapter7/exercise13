@@ -1,0 +1,22 @@
+class Animals{
+	void bark(int marker){
+		System.out.println("bark!" + marker);
+	}
+	void bark(char marker){
+		System.out .println("bark!" + marker);
+	}
+	void bark(double marker){
+		System.out.println("bark!"+marker);
+	}
+}
+public class Dog extends Animals{
+	void bark(boolean  marker){
+		System.out.println("bark!" + marker);
+	}
+	public static void main(String[] args){
+		Dog lucky = new Dog();
+		lucky.bark(1);
+		lucky.bark('a');
+		lucky.bark(1.1);
+	}
+}
