@@ -1,0 +1,27 @@
+
+class A {
+	A(int marker) {
+		System.out.println("A()" + marker );
+	}
+}
+
+
+class B  {
+	B(int marker){
+		System.out .println("B()"+ marker);
+	}
+}
+
+class C extends A{
+	C(int marker){
+		super(marker);
+		B b = new B(marker + 1);
+		System.out .println("C()" + marker);
+	}
+}
+
+public class D{
+	public static void main(String[] args) {
+		C c = new C(3);
+	}
+}
