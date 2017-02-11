@@ -1,0 +1,24 @@
+// reusing/E.java
+// TIJ4 Chapter Reusing, Exercise 7, page 245
+/* Prove that base-class constructors are (a) always called and (b) called before
+* derived-class constructors.
+*/
+
+class A {
+	A() {
+		System.out.println("A()" );
+	}
+}
+
+
+class B extends A {
+	B(int marker){
+		System.out .println("B()"+ marker);
+	}
+}
+
+public class D {
+	public static void main(String[] args) {
+		B c = new B(3);
+	}
+}
