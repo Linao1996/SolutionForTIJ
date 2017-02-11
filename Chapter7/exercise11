@@ -1,0 +1,68 @@
+// reusing/DetergentDelegation.java
+// TIJ4 Chapter Reusing, Exercise 11, page 248
+// Modify Detergent.java so that is uses delegation.
+class Cleanser {
+	private String s = "Cleanser";
+
+	public void append(String a) {
+		s += a;
+	}
+
+	public void dilute() {
+		append("dulute()");
+	}
+
+	public void apply() {
+		append("apply()");
+	}
+
+	public void scrub() {
+		append("scrub()");
+	}
+
+	public String toString() {
+		return s;
+	}
+
+	public static void main(String[] args) {
+		Cleanser c = new Cleanser();
+		System.out.println(c);
+	}
+}
+
+public class Detergent {
+	private String s = "Detergent.";
+	Cl c = new Cl();
+
+	public void append(String st) {
+		s += st;
+	}
+
+	public void dilute() {
+		c.dilute();
+	}
+
+	public void apply() {
+		c.apply();
+	}
+
+	public void scrub() {
+		append("Detergent()scrub.");
+		c.scrub();
+	}
+
+	public void foam() {
+		append("foam().");
+	}
+	public String toString(){
+		return s + " " + c;
+	}
+	public static void main(String[] args) {
+		Detergent deter = new Detergent();
+		deter.dilute();
+		deter.apply();
+		deter.scrub();
+		deter.foam();
+		System.out.println(deter);
+	}
+}
