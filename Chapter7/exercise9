@@ -1,0 +1,51 @@
+// reusing/Stem.java
+//TIJ4 Chapter Reusing, Exercise 9, page 246
+/* Create a class called Root that contains an instance of each of the classes
+* (that you also create) named Component1, Component2 and Component3. Derive a 
+* class Stem from Root that also contains an instance of each "component." All 
+* classes should have default constructors that print a message about that class.
+*/
+
+class Component1{
+	public Component1() {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Component1");
+	}
+}
+
+class Component2{
+	public Component2() {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Component2");
+	}
+}
+
+class Component3{
+	public Component3() {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Component3");
+	}
+}
+
+class Root{
+	Component1 component1 = new Component1();
+	Component2 component2 = new Component2();
+	Component3 component3 = new Component3();
+	public Root() {
+		// TODO Auto-generated constructor stub
+		System.out.println("This is Root!");
+	}
+}
+
+public class Tree extends Root{
+	Component1 component1 = new Component1();
+	Component2 component2 = new Component2();
+	Component3 component3 = new Component3();
+	public  Tree(){
+		System.out.println("This is Tree!");
+	}
+    public static void  main(String[] args){
+    	System.out.println("Main!");
+    	Tree tree = new Tree();
+    }
+}
