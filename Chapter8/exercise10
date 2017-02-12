@@ -1,0 +1,24 @@
+package pac1;
+class Animal{
+	public void eat(){
+		live();
+		System.out.println("Animal eating!");
+	}
+	public void live()
+	{
+		System.out.println("Animal living");
+	}
+
+}
+
+public class Dog extends Animal{
+	@Override
+	public void live(){
+		System.out.println("Dog living!");
+	}
+	public static void main(String[] args){
+		Dog dog = new Dog();
+		Dog ani = dog;
+		ani.eat();
+	}
+}
