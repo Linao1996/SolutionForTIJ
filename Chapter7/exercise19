@@ -1,0 +1,28 @@
+package pac1;
+
+class  Value{
+	private String name = "value";
+	Value(String s){
+		this.name = s;
+	}
+	public String toString(){
+		return name;
+	}
+}
+
+public class FinalDate{
+	final Value v1;
+	FinalDate(){
+		v1 = new Value("v1");
+	}
+	FinalDate(String s){
+		v1 = new Value(s);
+	}
+	public static void main(String[] args){
+		FinalDate f1 = new FinalDate();
+		FinalDate f2 = new FinalDate("f2");
+		System.out.println(f1.v1);
+		//f2.v1 = new Value("v2");
+
+	}
+}
