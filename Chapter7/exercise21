@@ -1,0 +1,19 @@
+package pac1;
+
+class Value {
+
+	final public void getValue() {
+		System.out.println("value!");
+	}
+}
+
+public class FinalDate extends Value {
+
+	@Override
+	public void getValue() {
+		System.out.println("no value!");
+	}
+	public static void main(String[] args){
+		System.out.println("FinalDate");
+	}
+}
