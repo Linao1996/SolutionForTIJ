@@ -1,0 +1,35 @@
+package pac2;
+
+class Cycle {
+
+}
+
+class Unicycle extends Cycle {
+
+}
+
+class Bicycle extends Cycle {
+
+}
+
+class Tricycle extends Cycle {
+
+}
+
+public class Cartoon {
+	static Cycle c1 = new Cycle();
+	static Unicycle c2 = new Unicycle();
+	static Bicycle c3 = new Bicycle();
+	static Tricycle c4 = new Tricycle();
+
+	static void ride(Cycle c) {
+		System.out.println("riding!" + c);
+	}
+
+	public static void main(String[] args) {
+		ride(c1);
+		ride(c2);
+		ride(c3);
+		ride(c4);
+	}
+}
