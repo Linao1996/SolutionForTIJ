@@ -8,7 +8,7 @@ class Value {
 	public void getValue2() {
 		System.out.println("value!");
 	}
-
+}
 	public class FinalDate extends Value {
 	//	@Override    // there is no overriding at all!
 		private void getValue() {
@@ -19,5 +19,5 @@ class Value {
 		public void getValue2() {
 			System.out.println("no value!");
 		}
-	}
 }
+
