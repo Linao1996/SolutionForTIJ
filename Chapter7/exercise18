@@ -1,0 +1,79 @@
+package pac1;
+
+import java.util.Random;
+
+class Value {
+	Value(int marker) {
+		System.out.println("Value created" + marker);
+	}
+}
+
+public class FinalDate {
+	private String name;
+
+	FinalDate(String name) {
+		this.name = name;
+	}
+
+	static final Value v1 = new Value(1);
+	final Value v2 = new Value(2);
+	private static Random rand = new Random();
+	static final int i1 = rand.nextInt();
+	final int i2 = rand.nextInt();
+
+	public String toString() {
+		return name + ":" + v1 + ":" + v2 + ":" + i1 + ":" + i2;
+	}
+
+	public static void main(String[] args) {
+		FinalDate f1 = new FinalDate("f1");
+		FinalDate f2 = new FinalDate("f2");
+		FinalDate f3 = new FinalDate("f3");
+		System.out.println(f1);
+		System.out.println(f2);
+		System.out.println(f3);
+	}
+}
+package pac1;
+
+import java.util.Random;
+
+class Value {
+	Value(int marker) {
+		System.out.println("Value created" + marker);
+	}
+}
+
+public class FinalDate {
+	private String name;
+
+	FinalDate(String name) {
+		this.name = name;
+	}
+
+	static final Value v1 = new Value(1);
+	final Value v2 = new Value(2);
+	private static Random rand = new Random();
+	static final int i1 = rand.nextInt();
+	final int i2 = rand.nextInt();
+
+	public String toString() {
+		return name + ":" + v1 + ":" + v2 + ":" + i1 + ":" + i2;
+	}
+
+	public static void main(String[] args) {
+		FinalDate f1 = new FinalDate("f1");
+		FinalDate f2 = new FinalDate("f2");
+		FinalDate f3 = new FinalDate("f3");
+		System.out.println(f1);
+		System.out.println(f2);
+		System.out.println(f3);
+	}
+}
+//Value created1
+//Value created2
+//Value created2
+//Value created2
+//f1:pac1.Value@3b764bce:pac1.Value@759ebb3d:1730751258:1619491218
+//f2:pac1.Value@3b764bce:pac1.Value@484b61fc:1730751258:-1150558339
+//f3:pac1.Value@3b764bce:pac1.Value@45fe3ee3:1730751258:-1135284954
