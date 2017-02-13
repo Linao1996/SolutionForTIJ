@@ -1,0 +1,43 @@
+// polymorphism/Sandwich11.java
+// TIJ4 Chapter Polymorphism, Exercise 11, page 295
+// Add class Pickle to Sandwich.java
+package pac1;
+
+class Meal {
+	Meal() { System.out.print("Meal()"); } 
+}
+
+class Bread {
+	Bread() { System.out.print("Bread()"); } 
+}
+
+class Cheese {
+	Cheese() { System.out.print("Cheese()"); } 
+}
+
+class Lettuce {
+	Lettuce() { System.out.print("Lettuce()"); } 
+}
+
+class Pickle {
+	Pickle() { System.out.print("Pickle()"); }
+}
+
+class Lunch extends Meal {
+	Lunch() { System.out.print("Lunch()"); } 
+}
+
+class PortableLunch extends Lunch {
+	PortableLunch() { System.out.print("PortableLunch()"); } 
+}	
+
+public class Sandwich11 extends PortableLunch {
+	private Bread b = new Bread();
+	private Cheese c = new Cheese();
+	private Pickle p = new Pickle();
+	private Lunch l = new Lunch();
+	public Sandwich11() { System.out.print("Sandwich()"); }
+	public static void main(String[] args) {
+		new Sandwich11();
+	} 
+}
