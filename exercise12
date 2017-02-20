@@ -1,0 +1,106 @@
+package pac1;
+
+import java.util.Random;
+
+class Brian {
+	Brian(int marker) {
+		System.out.println("Look, I hava brain!" + marker);
+	}
+}
+
+class Rodent {
+	Brian b1 = new Brian(1);
+	static Brian b2 = new Brian(2);
+	Rodent() {
+		System.out.println("Roden created!");
+	}
+
+	public void eat() {
+		System.out.println("Rodent eating!");
+	}
+
+	public void run() {
+		System.out.println("Rodent running!");
+	}
+}
+
+class Mouse extends Rodent {
+	Brian b1 = new Brian(3);
+	static Brian b2 = new Brian(4);
+	Mouse() {
+		System.out.println("Mouse created!");
+	}
+
+	public void eat() {
+		System.out.println("Mouse eating!");
+	}
+
+	public void run() {
+		System.out.println("Mouse running!");
+	}
+}
+
+class Gerbil extends Mouse {
+	Brian b1 = new Brian(5);
+	static Brian b2 = new Brian(6);
+	Gerbil() {
+		System.out.println("Gerbil created!");
+	}
+
+	public void eat() {
+		System.out.println("Gerbil eating");
+	}
+
+	public void run() {
+		System.out.println("Gerbil running");
+	}
+}
+
+class Hamster extends Mouse {
+	Brian b1 = new Brian(7);
+	static Brian b2 = new Brian(8);
+	Hamster() {
+		System.out.println("Hamster created!");
+	}
+
+	public void eat() {
+		System.out.println("Hamster eating");
+	}
+
+	public void run() {
+		System.out.println("Hamster running");
+	}
+}
+
+public class Rodents {
+	static Rodent germinate() {
+		Random rand = new Random();
+		switch (rand.nextInt(4)) {
+		default:
+		case 0:
+			System.out.println("0");
+			return new Rodent();
+		case 1:
+			System.out.println("1");
+			return new Mouse();
+		case 2:
+			System.out.println("2");
+			return new Gerbil();
+		case 3:
+			System.out.println("3");
+			return new Hamster();
+		}
+	}
+
+	public static void main(String[] args) {
+		Rodent[] ro = new Rodent[9];
+		for (int i = 0; i < 9; i++) {
+			ro[i] = germinate();
+		}
+		// for(Rodent r:ro){
+		// r.eat();
+		// r.run();
+		// }
+	}
+
+}
