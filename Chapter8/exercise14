@@ -1,0 +1,169 @@
+package pac1;
+
+import java.util.Random;
+
+class House {
+	private long rodentCount = 0;
+	private static long houseCount = 0;
+	private final long id = houseCount + 1;
+
+	House() {
+		System.out.println("House " + id + "created");
+		houseCount++;
+	}
+
+	void addCount() {
+		rodentCount++;
+	}
+
+	void dispose() {
+		if (--rodentCount == 0) {
+			System.out.println("House is finally destroyed !!!!");
+			houseCount--;
+		}
+	}
+
+	public String toString() {
+		return "rodentCount = " + rodentCount + "\n" + "houseCount = " + houseCount;
+	}
+}
+
+class Rodent {
+	House house;
+
+	Rodent(House house) {
+		System.out.println("Roden created!");
+		this.house = house;
+	}
+
+	public void eat() {
+		System.out.println("Rodent eating!");
+	}
+
+	public void run() {
+		System.out.println("Rodent running!");
+	}
+
+	void dispose() {
+		System.out.println("Rodent disposed");
+		house.dispose(); // only base class has this line,or there would be
+							// error.
+	}
+}
+
+class Mouse extends Rodent {
+
+	House house;
+
+	Mouse(House house) {
+		super(house);
+		System.out.println("Mouse created!");
+		this.house = house;
+	}
+
+	public void eat() {
+		System.out.println("Mouse eating!");
+	}
+
+	public void run() {
+		System.out.println("Mouse running!");
+	}
+
+	void dispose() {
+		System.out.println("Mouse disposed!");
+		super.dispose();
+	}
+
+}
+
+class Gerbil extends Mouse {
+
+	House house;
+
+	Gerbil(House house) {
+		super(house);
+		System.out.println("Gerbil created!");
+		this.house = house;
+	}
+
+	public void eat() {
+		System.out.println("Gerbil eating");
+	}
+
+	public void run() {
+		System.out.println("Gerbil running");
+	}
+
+	void dispose() {
+		System.out.println("Gerbil disposed!");
+		super.dispose();
+	}
+}
+
+class Hamster extends Mouse {
+
+	House house;
+
+	Hamster(House house) {
+		super(house);
+		this.house = house;
+		System.out.println("Hamster created!");
+	}
+
+	public void eat() {
+		System.out.println("Hamster eating");
+	}
+
+	public void run() {
+		System.out.println("Hamster running");
+	}
+
+	void dispose() {
+		System.out.println("Hamster disposed!");
+		super.dispose();
+	}
+}
+
+public class Rodents {
+	static House house = new House();
+	static House house1 = new House();
+
+	static Rodent germinate() {
+		Random rand = new Random();
+		switch (rand.nextInt(4)) {
+		default:
+		case 0:
+			Rodent rodent = new Rodent(house);
+			house.addCount();
+			return rodent;
+		case 1:
+			Mouse mouse = new Mouse(house);
+			house.addCount();
+			return mouse;
+		case 2:
+			Gerbil gerbil = new Gerbil(house);
+			house.addCount();
+			return gerbil;
+		case 3:
+			Hamster hamster = new Hamster(house);
+			house.addCount();
+			return hamster;
+		}
+	}
+
+	public static void main(String[] args) {
+		Rodent[] ro = new Rodent[9];
+		for (int i = 0; i < 9; i++) {
+			ro[i] = germinate();
+			System.out.println(house);
+		}
+		for (int i = 0; i < 9; i++) {
+			ro[i].dispose();
+			System.out.println(house);
+		}
+		// for(Rodent r:ro){
+		// r.eat();
+		// r.run();
+		// }
+	}
+}
