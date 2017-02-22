@@ -1,0 +1,48 @@
+package pac1;
+
+class Glyph {
+	void draw() {
+		System.out.println("Glyph.draw()");
+	}
+
+	Glyph() {
+		System.out.println("Glyph() before draw()");
+		draw();
+		System.out.println("Glyph() after draw()");
+	}
+}
+
+class RoundGlyph extends Glyph {
+	private int radius = 1;
+
+	RoundGlyph(int r) {
+		radius = r;
+		System.out.println("RoundGlyph.RoundGlyph(), radius = " + radius);
+	}
+
+	void draw() {
+		System.out.println("RoundGlyph.draw, radius = " + radius);
+	}
+}
+
+class RectanglarGlyph extends Glyph {
+	private int length;
+	private int width;
+
+	public RectanglarGlyph(int length, int width) {
+		// TODO Auto-generated constructor stub
+		this.length = length;
+		this.width = width;
+		System.out.println("Rectangular.Reactangular(),length = " + this.length + " width = " + this.width);
+	}
+	void draw(){
+		System.out.println("drawing reactangle , length = " + this.length + " width = " + this.width);
+	}
+}
+
+public class PolyConstructors {
+	public static void main(String[] args) {
+		new RoundGlyph(5);
+		new RectanglarGlyph(5, 4);
+	}
+}
