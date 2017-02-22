@@ -1,0 +1,44 @@
+package pac1;
+class Fly{
+	public void fly(){
+		
+	}
+}
+class RapidFly extends Fly{
+	public void fly(){
+		System.out.println("RapidFlying");
+	}
+}
+class SlowlyFly extends Fly{
+	public void fly(){
+		System.out.println("SlowlyFlying");
+	}
+}
+class WarpDriveFly extends Fly{
+	public void fly(){
+		System.out.println("Faster than light!");
+	}
+}
+
+class Starship{
+	private Fly AlterStatus = new SlowlyFly();
+	void changeToRapid(){
+		AlterStatus = new RapidFly();
+	}
+	void changeToWarpDrive(){
+		AlterStatus = new WarpDriveFly();
+	}
+	void fly(){
+		AlterStatus.fly();
+	}
+}
+public class StarTrek{
+	private static Starship starship = new Starship();
+	public static void main(String[] args){
+		starship.fly();
+		starship.changeToRapid();
+		starship.fly();
+		starship.changeToWarpDrive();
+		starship.fly();
+	}
+}
