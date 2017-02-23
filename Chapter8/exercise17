@@ -1,0 +1,43 @@
+package pac2;
+
+class Cycle {
+
+}
+
+class Unicycle extends Cycle {
+
+	void balance(int i){
+		System.out.println("Unicycle balance" + i);
+	}
+}
+
+class Bicycle extends Cycle {
+
+	void balance(int i){
+		System.out.println("bicycle balance" + i);
+	}
+}
+
+class Tricycle extends Cycle {
+
+}
+
+public class Cartoon {
+	static Cycle c1 = new Cycle();
+	static Unicycle c2 = new Unicycle();
+	static Bicycle c3 = new Bicycle();
+	static Tricycle c4 = new Tricycle();
+	static Cycle[] cycles = {c2,c3,c4};
+	static void ride(Cycle c) {
+		System.out.println("riding!" + c);
+	}
+
+	public static void main(String[] args) {
+//		cycles[0].balance;
+//		cycles[1].balance;
+//		cycles[2].balance;
+		((Unicycle)cycles[0]).balance(1);
+//		((Unicycle)cycles[1]).balance(2); // why won't compiler complain about this? 
+		((Unicycle)cycles[2]).balance(3);
+	}
+}
