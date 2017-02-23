@@ -1,0 +1,21 @@
+package pac2;
+
+
+abstract class Dad {
+	abstract void print();
+}
+
+class Son extends Dad {
+	protected void print() { System.out.println("Son"); }
+}
+
+
+public class C {
+	public static void testPrint(Dad d) {
+		d.print();
+	}
+	public static void main(String[] args) {
+		Son s = new Son();
+		testPrint(s);
+	}
+}
