@@ -1,0 +1,68 @@
+package pac2;
+
+import java.util.Random;
+
+interface Rodent {
+	public void eat();
+
+	public void run();
+}
+
+class Mouse implements Rodent {
+	public void eat() {
+		System.out.println("Mouse eating!");
+	}
+
+	public void run() {
+		System.out.println("Mouse running!");
+	}
+}
+
+class Gerbil extends Mouse {
+	public void eat() {
+		System.out.println("Gerbil eating");
+	}
+
+	public void run() {
+		System.out.println("Gerbil running");
+	}
+}
+
+class Hamster extends Mouse {
+	public void eat() {
+		System.out.println("Hamster eating");
+	}
+
+	public void run() {
+		System.out.println("Hamster running");
+	}
+}
+
+public class Rodents {
+	static Rodent germinate() {
+		Random rand = new Random();
+		switch (rand.nextInt(4)) {
+		default:
+		case 0:
+//			return new Rodent();
+		case 1:
+			return new Mouse();
+		case 2:
+			return new Gerbil();
+		case 3:
+			return new Hamster();
+		}
+	}
+
+	public static void main(String[] args) {
+		Rodent[] ro = new Rodent[9];
+		for (int i = 0; i < 9; i++) {
+			ro[i] = germinate();
+		}
+		for (Rodent r : ro) {
+			r.eat();
+			r.run();
+		}
+	}
+
+}
