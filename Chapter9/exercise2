@@ -1,0 +1,11 @@
+package pac2;
+
+
+abstract class Rodent {
+}
+
+public class Rodents{
+	public static void main(String[] args){
+//		Rodent rodent = new Rodent() 
+	}
+}
