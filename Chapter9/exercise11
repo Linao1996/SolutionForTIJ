@@ -1,0 +1,80 @@
+//package pac2;
+//public interface Processor{
+//	String name();
+//	Object process(Object input);
+
+
+
+//package pac2;
+//public class Apply{
+//	public static void process(Processor p, Object s){
+//		System.out.println("Using processor " + p.name());
+//		System.out.println(p.process(s));
+//
+//	}
+//}}
+
+//
+//package pac2;
+//
+// public class StringMixer {
+//	static String process(String s) {
+//		char[] ca = new char[s.length()];
+//		if((s.length())%2 == 0) {
+//			for(int i = 0; i < s.length(); i += 2) {
+//				ca[i] = s.charAt(i + 1);
+//				ca[i + 1] = s.charAt(i);			
+//			}		
+//			return new String(ca);
+//		}
+//		else {
+//		for(int i = 0; i < s.length() - 1; i += 2) {
+//				ca[i] = s.charAt(i + 1);
+//				ca[i + 1] = s.charAt(i);			
+//			}
+//			ca[s.length() - 1] = s.charAt(s.length() - 1);		
+//			return new String(ca);
+//		}
+//	}	
+// }
+
+//package pac2;
+//
+//public class StringMixerAdapter implements Processor{
+//
+//	private StringProcessor s;
+//	public static void main(String[] args) {
+//
+//
+//	}
+//
+//	public StringMixerAdapter(StringProcessor s) {
+//		// TODO Auto-generated constructor stub
+//		this.s = s;
+//	}
+//	@Override
+//	public String name() {
+//		// TODO Auto-generated method stub
+//		return getClass().getSimpleName();
+//	}
+//
+//	@Override
+//	public Object process(Object input) {
+//		// TODO Auto-generated method stub
+//		return s.process((String)input);
+//	}
+//
+//}
+//
+package pac2;
+
+public class Processor {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String w = "Iloveyou";
+		Apply.process(new StringMixerAdapter(new StringProcessor()), w);
+	}
+
+}
+
