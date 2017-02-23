@@ -1,0 +1,23 @@
+package pac1;
+
+import pac2.A; 
+class B implements A {
+
+	@Override
+	public void f() {
+		System.out.println("f");
+	}
+
+	@Override
+	public void g() {
+
+		System.out.println("g");
+	}
+
+	@Override
+	public void q() {
+		System.out.println("q");
+
+	}
+
+}
