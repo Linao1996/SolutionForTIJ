@@ -1,0 +1,102 @@
+package pac1;
+
+interface Hull {
+	void material();
+
+	void color();
+}
+
+interface Engine {
+	void run();
+
+	void repair();
+}
+
+interface Control {
+	void forward();
+
+	void back();
+}
+
+interface StarshipLike extends Hull,Engine,Control{
+	void fly();
+}
+class Ship{
+	void expode(){};
+}
+class  StarShip extends Ship implements StarshipLike{
+
+	@Override
+	public void material() {
+		// TODO Auto-generated method stub
+		System.out.println("material");
+		
+	}
+
+	@Override
+	public void color() {
+		// TODO Auto-generated method stub
+		System.out.println("color");
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated mematerialthod stub
+		System.out.println("run");
+	}
+
+	@Override
+	public void repair() {
+		System.out.println("repair");
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void forward() {
+		// TODO Auto-generated method stub
+		System.out.println("forward");
+		
+	}
+
+	@Override
+	public void back() {
+		// TODO Auto-generated method stub
+		System.out.println("back");
+
+	}
+
+	@Override
+	public void fly() {
+		// TODO Auto-generated method stub
+		System.out.println("fly");
+		
+	}
+	
+}
+public class Adventure{
+	static void f(Hull h) {
+		h.color();
+		h.material();
+		
+	}
+	static void g(Engine e){
+		e.repair();
+		e.run();
+	}
+	static void p(Control c){
+		c.forward();
+		c.back();
+	}
+	static void q(StarshipLike s){
+		s.fly();
+	}
+	public static void main(String[] args){
+		StarShip starship =new StarShip();
+		f(starship);
+		g(starship);
+		p(starship);
+		q(starship);
+	}
+}
