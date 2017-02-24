@@ -1,0 +1,52 @@
+package pac1;
+
+interface A {
+	void a();
+}
+
+interface B extends A {
+
+	void b();
+}
+
+interface C extends A {
+	void c();
+}
+interface D extends B,C{
+	void d(); }
+class E implements D{
+
+	@Override
+	public void b() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void a() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void c() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void d() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+public class Adventure{
+	public static void main(String[] args){
+		E e = new E();
+		e.a();;
+		e.b();
+		e.c();
+		e.d();
+	}
+}
