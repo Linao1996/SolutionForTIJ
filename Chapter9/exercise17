@@ -1,0 +1,29 @@
+package pac1;
+
+import java.util.Random;
+
+class PrintNum {
+	PrintNum(int marker) {
+		System.out.println("initialized" + marker);
+	}
+}
+
+interface A {
+	PrintNum ANIMAL = new PrintNum(1); 
+}
+
+class B {
+	PrintNum ANIMAL1 = new PrintNum(2);
+}
+
+public class C extends B implements A {
+	public static void main(String[] args) {
+		C c1 = new C();
+		C c2 = new C();
+		System.out.println(c1.ANIMAL);
+		System.out.println(c2.ANIMAL);
+		System.out.println(c1.ANIMAL1);
+		System.out.println(c2.ANIMAL1);
+
+	}
+}
