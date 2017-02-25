@@ -1,0 +1,42 @@
+package pac1;
+
+import java.util.Random;
+
+interface Game{
+	void trygame();
+}
+interface GameFactory{
+	Game getGame();
+}
+class CoinTossing implements Game{
+	Random rand = new Random();
+	public void trygame(){
+		System.out.println("the result of cointossign is " + rand.nextInt(10)%2);
+	}
+}
+class CoinTossingFactory implements GameFactory{
+	public CoinTossing getGame(){
+		return new CoinTossing();
+	}
+}
+class DiceRolling implements Game{
+	Random rand = new Random();
+	public void trygame(){
+		System.out.println("the result of dicerolling is " + (rand.nextInt(100)%6+1));
+	}
+}
+class DiceRollingFactory implements GameFactory{
+	public DiceRolling getGame(){
+		return new DiceRolling();
+	}
+}
+public class GamePlaying{
+	public static void getService(GameFactory gf){
+		Game g = gf.getGame();
+		g.trygame();
+	}
+	public static void main(String[] args){
+		getService(new DiceRollingFactory());
+		getService(new CoinTossingFactory());
+	}
+}
