@@ -1,0 +1,19 @@
+package pac1;
+
+import pac1.A.B;
+
+class A {
+	class B {
+		B(){
+			System.out.println("B created!");
+		}
+	}
+
+}
+public class C{
+	public static void main(String[] args)
+	{
+		A a = new A();
+		A.B  b = a.new B();
+	}
+}
