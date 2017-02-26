@@ -1,0 +1,39 @@
+package pac1;
+
+public interface A{
+
+	void c();
+}
+
+
+package pac2;
+
+import pac1.A;
+
+public class B {
+	protected class C implements A {
+		public C() { //must have public constructor if going to be extended by its children!
+		}
+
+		public void c() {
+			System.out.print("class C of class B");
+
+		}
+		
+	}
+}
+
+
+import pac2.*; import pac1.*;
+
+public class D extends B {
+	C getC() {
+		return this.new C();// this used here is brilliant;
+	}
+	public static void main(String [] args){
+		D d = new D();
+		A a = (A)d.getC();
+		a.c();
+	}
+
+}
