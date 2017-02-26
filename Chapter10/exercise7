@@ -1,0 +1,22 @@
+package pac1;
+
+class A{
+	private String s = "s";
+	private void getString(){
+		System.out.println(s);
+	}
+	class B{
+		void changeString(String sB){
+			s = sB;
+			getString();
+		}
+	}
+	public static void main(String[] args)
+	{
+		A a = new A();
+		B b = a.new B();
+		b.changeString("sofb");
+		a.getString();
+	}
+			
+}
