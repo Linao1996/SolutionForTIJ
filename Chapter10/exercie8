@@ -1,0 +1,19 @@
+package pac1;
+
+class A{
+	private static int c = 0;
+	class B{
+		private int b = 1;
+	}
+	public static void main(String[] args)
+	{
+		int i = 2;
+		int j = 2;
+		A a = new A();
+		i = c;
+		j = a.new B().b;
+		System.out.println(i);
+		System.out.println(j);
+	}
+			
+}
