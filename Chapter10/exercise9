@@ -1,0 +1,17 @@
+interface Animal{
+	void eat();
+}
+public class Parcel6{
+	public Animal getAnimal(){
+		class Dog implements Animal{
+			public void eat(){
+				System.out.println("Dog is eating!");
+			}
+		}
+		return new Dog();
+	}
+	public static void main(String[] args){
+		Parcel6 parcel6 = new Parcel6();
+		(parcel6.getAnimal()).eat();;
+	}
+}
