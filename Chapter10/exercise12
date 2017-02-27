@@ -1,0 +1,29 @@
+package pac1;
+
+interface B {
+	void changeString();
+}
+
+public class A {
+	private String s = "s";
+
+	private void getString() {
+		System.out.println(s);
+	}
+
+	B changeString(String sB) {
+		return new B() {
+			public void changeString() {
+				s = sB;
+			}
+		};
+	}
+
+	public static void main(String[] args) {
+		A a = new A();
+		a.getString();
+		a.changeString("sofb").changeString();;
+		a.getString();
+	}
+
+}
