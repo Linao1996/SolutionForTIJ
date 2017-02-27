@@ -1,0 +1,24 @@
+interface Animal {
+	void eat();
+}
+
+public class Parcel6 {
+	public Animal getAnimal(boolean b) {
+		if (b) {
+			class Dog implements Animal {
+				public void eat() {
+					System.out.println("Dog is eating!");
+				}
+			}
+			return new Dog();
+		}
+		return null;
+//		return new Dog();  // can't not find Dog() here,because it Dog() is not in if{};
+	}
+
+	public static void main(String[] args) {
+		Parcel6 parcel6 = new Parcel6();
+		(parcel6.getAnimal(true)).eat();
+		;
+	}
+}
