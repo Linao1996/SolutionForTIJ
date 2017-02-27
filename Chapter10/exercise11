@@ -1,0 +1,20 @@
+import pac1.Animal;
+
+class Parcel {
+	private class Dog implements Animal {
+		public void eat() {
+			System.out.println("Dog is eating!");
+		}
+	}
+
+	Animal getDog() {
+		return new Dog();
+	}
+}
+public class Parcel6{
+	public static void main(String[] args) {
+		Parcel parcel = new Parcel();
+		(parcel.getDog()).eat();
+
+	}
+}
