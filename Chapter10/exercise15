@@ -1,0 +1,26 @@
+package pac1;
+
+class A {
+	A(int marker) {
+		System.out.println("class A" + marker);
+	}
+
+	void eat() {
+		System.out.println("A is eating!");
+	}
+}
+
+public class B {
+	A getA(int marker) {
+		return new A(marker) {
+			void eat() {
+				System.out.markerprintln("A is eating again!");
+			}
+		};
+	}
+	public static void main(String[] args){
+		B b = new B();
+		b.getA(3).eat();
+	}
+
+}
