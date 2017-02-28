@@ -1,0 +1,18 @@
+package pac1;
+
+public class Animal{
+	static class Dog{
+		Dog(){
+			System.out.println("Dog created!");
+		}
+	}
+	class Cat{
+		Cat(){
+			System.out.println("Cat created!");
+		}
+	}
+	public static void main(String[] args){
+		Dog dog = new Dog();
+//		Cat cat = new Cat(); //can't be created!
+	}
+}
