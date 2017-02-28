@@ -1,0 +1,31 @@
+package pac1;
+
+interface AnimalInterface {
+	void howdy();
+
+	class Test implements AnimalInterface {
+		public void howdy() {
+			System.out.println("Howdy!");
+		}
+
+		public static void main(String[] args) {
+			new Test().howdy();
+		}
+		Test(){
+			System.out.println("Test created");
+		}
+	}
+}
+
+public class Animal implements AnimalInterface {
+
+	@Override
+	public void howdy() {
+		System.out.println("Animal Howdy");
+	}
+	public static void main(String[] args) {
+		Animal animal = new Animal();
+		animal.howdy();
+		Test test = new Test();
+	}
+}
