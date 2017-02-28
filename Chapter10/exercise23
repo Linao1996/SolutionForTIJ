@@ -1,0 +1,81 @@
+package pac1;
+
+interface U {
+	void eat();
+
+	void jump();
+
+	void sleep();
+}
+
+class A {
+	private static int num = 0;
+	private int id = num+1;
+
+	A() {
+		num++;
+	}
+
+	U getU() {
+		return new U() {
+			public void eat() {
+				System.out.println("I am eating " + this);
+			}
+
+			public void jump() {
+				System.out.println("I am jumping " + this);
+			}
+
+			public void sleep() {
+				System.out.println("I am sleeping " + this);
+			}
+
+			public String toString() {
+				return "A" + id;
+			}
+		};
+	}
+}
+
+public class B {
+	static final int MAX = 3;
+	U[] ub = new U[MAX];
+	private int count = 0;
+
+	void addU(U u) {
+		if (count < MAX) {
+			ub[count++] = u;
+		} else {
+			System.out.println("Out of bound!");
+		}
+	}
+
+	void makeNull(int location) {
+		ub[location] = null;
+	}
+
+	void traverse() {
+		for (int i = 0; i < MAX; i++) {
+			if (ub[i] != null) {
+				ub[i].eat();
+				ub[i].jump();
+				ub[i].sleep();
+			} else {
+				;
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		A a1 = new A();
+		A a2 = new A();
+		A a3 = new A();
+		B b = new B();
+		b.addU(a1.getU());
+		b.addU(a2.getU());
+		b.addU(a3.getU());
+		b.traverse();
+		b.makeNull(1);
+		b.traverse();
+	}
+}
