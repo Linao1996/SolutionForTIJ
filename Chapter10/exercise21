@@ -1,0 +1,29 @@
+package pac1;
+interface In {
+	int f();
+	int g();
+	class Dog{
+		static void eat(In i){
+			System.out.println((i.f() + i.g()));
+		}
+	}
+}
+public class Animal implements In{
+
+	@Override
+	public int f() {
+		return 1;
+	}
+
+	@Override
+	public int g() {
+		// TODO Auto-generated method stub
+		return 2;
+	}
+	public static void main(String[] args){
+		Animal animal = new Animal();
+		Dog.eat(animal);
+	}
+
+	
+}
