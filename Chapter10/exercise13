@@ -1,0 +1,15 @@
+package pac1;
+
+public class Parcel6 {
+	public Animal getAnimal() {
+		return new Animal(){
+			public void eat(){
+				System.out.println("Dog is eating");
+			}
+		};
+	}
+	public static void main(String[] args) {
+		Parcel6 parcel6 = new Parcel6();
+		parcel6.getAnimal().eat();
+	}
+}
