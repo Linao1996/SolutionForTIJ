@@ -1,0 +1,57 @@
+package pac1;
+
+interface Cycle {
+	void roll();
+}
+
+interface CycleFactory {
+	Cycle service();
+}
+
+
+
+class UnicycleFactory implements CycleFactory {
+	public Cycle service() {
+		return new Cycle() {
+			public void roll() {
+				System.out.println("Unicycle rolling!");
+			}
+		};
+	}
+}
+
+
+
+class BicycleFactory implements CycleFactory {
+	public Cycle service() {
+		return new Cycle(){
+			public void roll(){
+				System.out.println("Bicycle rolling");
+			}
+		};
+	}
+}
+
+
+class TricycleFactory implements CycleFactory {
+	public Cycle service() {
+		return new Cycle(){
+			public void roll(){
+				System.out.println("Tricycle rolling");
+			}
+		};
+	}
+}
+
+public class CycleServices {
+	public static void cycleservice(CycleFactory cf) {
+		Cycle c = cf.service();
+		c.roll();
+	}
+
+	public static void main(String[] args) {
+		cycleservice(new UnicycleFactory());
+		cycleservice(new BicycleFactory());
+		cycleservice(new TricycleFactory());
+	}
+}
