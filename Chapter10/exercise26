@@ -1,0 +1,22 @@
+package pac2;
+
+class A{
+	class B{
+		B(int marker)
+		{
+			System.out.println("B()" + marker);
+		}
+	}
+}
+public class C{
+	class D extends A.B{
+		public D(A a,int marker){
+			a.super(marker);
+		}
+	}
+	public static void main(String[] args){
+		A a = new A();
+		C c = new C();
+		c.new D(a, 3);
+	}
+}
