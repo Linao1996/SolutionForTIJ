@@ -1,0 +1,48 @@
+package pac2;
+
+import java.util.*;
+
+interface Selector {
+	boolean end();
+
+	Object current();
+
+	void next();
+}
+
+public class Sequence3 {
+	private ArrayList<Integer> arrayList = new ArrayList<Integer>();
+	private int i = 0;
+
+	public void add(int i) {
+		arrayList.add(i);
+	}
+
+	class SequenceSelector implements Selector {
+		public boolean end() {
+			return i == arrayList.size();
+		}
+
+		public Object current() {
+			return arrayList.get(i);
+		}
+
+		public void next() {
+			i++;
+		}
+
+	}
+
+	public static void main(String[] args) {
+		Sequence3 s = new Sequence3();
+		for (int i = 0; i < 10; i++) {
+			s.add(i);
+		}
+		SequenceSelector ss = s.new SequenceSelector();
+		while (!ss.end()) {
+			System.out.println(ss.current());
+			ss.next();
+		}
+
+	}
+}
