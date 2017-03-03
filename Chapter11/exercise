@@ -1,0 +1,43 @@
+package pac2;
+
+import java.util.*;
+
+class Generator {
+	private String[] movies = { "Star trek", "Star wars", "Foundation", };
+	private int i = 0;
+
+	String next() {
+		if (i != movies.length) {
+			return movies[i++];
+		} else {
+			return movies[i = 0];
+		}
+
+	}
+}
+
+public class Printer {
+	static String[] arrayString = new String[10];
+	static ArrayList<String> arrayList = new ArrayList<String>();
+	static LinkedList<String> linkedList = new LinkedList<String>();
+	static HashSet<String> hashset = new HashSet<String>();
+	static LinkedHashSet<String> linkedHashSet = new LinkedHashSet<String>();
+
+	public static void main(String[] args) {
+		Generator generator = new Generator();
+		for (int i = 0; i < 10; i++) {
+			arrayString[i] = generator.next();
+			arrayList.add(generator.next());
+			linkedList.add(generator.next());
+			hashset.add(generator.next());
+			linkedHashSet.add(generator.next());
+		}
+		System.out.println(arrayList);
+		System.out.println(linkedList);
+		System.out.println(hashset);
+		for(int i = 0;i < 10;i++){
+			System.out.println(arrayString[i]);
+		}
+
+	}
+}
