@@ -1,0 +1,94 @@
+package pac2;
+
+import java.util.*;
+
+class Rodent {
+	public void eat() {
+		System.out.println("Rodent eating!");
+	}
+
+	public void run() {
+		System.out.println("Rodent running!");
+	}
+
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
+}
+
+class Mouse {
+
+	public void eat() {
+		System.out.println("Mouse eating!");
+	}
+
+	public void run() {
+		System.out.println("Mouse running!");
+	}
+
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
+}
+
+class Gerbil {
+	public void eat() {
+		System.out.println("Gerbil eating");
+	}
+
+	public void run() {
+		System.out.println("Gerbil running");
+	}
+
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
+}
+
+class Hamster {
+	public void eat() {
+		System.out.println("Hamster eating");
+	}
+
+	public void run() {
+		System.out.println("Hamster running");
+	}
+
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
+}
+
+public class Rodents {
+	static Object germinate() {
+		Random rand = new Random();
+		switch (rand.nextInt(6)) {
+		default:
+		case 0:
+			return new Rodent();
+		case 1:
+			return new Mouse();
+		case 2:
+			return new Gerbil();
+		case 3:
+			return new Hamster();
+
+		case 4:
+			return 1;
+		case 5:
+			return "hello";
+		}
+	}
+
+	public static void main(String[] args) {
+		List<Object> ol = new ArrayList<Object>();
+		for (int i = 0; i < 9; i++) {
+			ol.add(germinate());
+		}
+		Iterator it = ol.iterator();
+		while (it.hasNext()) {
+			System.out.println(it.next());
+		}
+	}
+
+}
