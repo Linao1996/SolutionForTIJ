@@ -1,0 +1,76 @@
+package pac2;
+
+import java.util.*;
+
+class Rodent {
+	public void eat() {
+		System.out.println("Rodent eating!");
+	}
+
+	public void run() {
+		System.out.println("Rodent running!");
+	}
+	public String toString(){
+		return this.getClass().getSimpleName();
+	}
+}
+
+class Mouse extends Rodent {
+
+	public void eat() {
+		System.out.println("Mouse eating!");
+	}
+
+	public void run() {
+		System.out.println("Mouse running!");
+	}
+}
+
+class Gerbil extends Mouse {
+	public void eat() {
+		System.out.println("Gerbil eating");
+	}
+
+	public void run() {
+		System.out.println("Gerbil running");
+	}
+}
+
+class Hamster extends Mouse {
+	public void eat() {
+		System.out.println("Hamster eating");
+	}
+
+	public void run() {
+		System.out.println("Hamster running");
+	}
+}
+
+public class Rodents {
+	static Rodent germinate() {
+		Random rand = new Random();
+		switch (rand.nextInt(4)) {
+		default:
+		case 0:
+			return new Rodent();
+		case 1:
+			return new Mouse();
+		case 2:
+			return new Gerbil();
+		case 3:
+			return new Hamster();
+		}
+	}
+
+	public static void main(String[] args) {
+		List<Rodent> rodents = new ArrayList<Rodent>();
+		for (int i = 0; i < 9; i++) {
+			rodents.add(germinate());
+		}
+		Iterator it = rodents.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}
+	}
+
+}
