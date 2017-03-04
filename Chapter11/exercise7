@@ -1,0 +1,37 @@
+package pac2;
+
+import java.util.*;
+
+class Rectangle {
+	private int length;
+	private int width;
+
+	Rectangle(int i ,int j){
+		length = i;
+		width = j;
+	}
+	public String toString(){
+		return "length: " + length + " width: " + width;
+	}
+}
+
+public class RectangleList {
+	public static List<Rectangle> getRectangleList(int length) {
+		List<Rectangle> rectangleList = new ArrayList<Rectangle>();
+		for (int i = 0; i < length; i++) {
+			rectangleList.add(new Rectangle(i,i));
+		}
+		return rectangleList;
+	}
+
+	public static void main(String[] args) {
+		List<Rectangle> li = getRectangleList(10);
+		List<Rectangle> subList = li.subList(2, 5);
+		System.out.println("List: " + li);
+		System.out.println("SUBLIST:" + subList);
+		li.removeAll(subList);
+		System.out.println("LIST: " + li);
+
+	}
+
+}
