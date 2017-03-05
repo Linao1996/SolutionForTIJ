@@ -1,0 +1,36 @@
+package pac2;
+
+import java.util.*;
+
+class Event {
+
+	boolean ready() {
+		return false;
+	};
+
+	void action() {
+	};
+}
+
+public class Controller {
+	// A class from java.util to hold Event objects:
+	private List<Event> eventList = new LinkedList<Event>();
+
+	public void addEvent(Event c) {
+		eventList.add(c);
+	}
+
+	public void run2() {
+		ListIterator<Event> it = eventList.listIterator();
+		while (it.hasNext()) {
+			if (it.next().ready()) {
+				it.previous();
+				System.out.println(it.next());
+				it.previous();
+				it.next().action();
+				it.previous();
+				it.remove();
+				
+			}
+		}
+	}
