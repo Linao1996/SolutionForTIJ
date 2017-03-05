@@ -1,0 +1,43 @@
+package pac2;
+
+import java.util.*;
+
+public class ListIteration {
+	static List<Integer> integers1 = new ArrayList(Arrays.asList(1, 2, 3, 4, 5));
+	static List<Integer> integers2 = new ArrayList<Integer>();
+
+	static void getintegers21() {
+		ListIterator<Integer> it = integers1.listIterator(5);
+		while (it.hasPrevious()) {
+			integers2.add(it.previous());
+		}
+		System.out.println(integers2);
+	}
+
+	static void getintegers22() {
+		ListIterator<Integer> it1 = integers1.listIterator(5);
+		ListIterator<Integer> it2 = integers1.listIterator();
+		for (int i = 0; i < integers1.size(); i++) {
+			integers2.add(0);
+		}
+		while (it2.hasNext()) {
+			it2.next();
+			it2.set(it1.previous());
+		}
+		System.out.println(integers2);
+
+	}
+
+	static void getintegers23() {
+		for (int i = integers1.size() - 1; i >= 0; i--) {
+			integers2.add(integers1.get(i));
+		}
+		System.out.println(integers2);
+	}
+
+	public static void main(String[] args) {
+		// getintegers21();
+		getintegers22();
+		// getintegers23();
+	}
+}
