@@ -1,0 +1,26 @@
+package pac2;
+
+import java.util.*;
+
+public class Vowels {
+	static void getVowelsNum(Set<String> st) {
+		Set<Character> sc = new HashSet<Character>(Arrays.asList('a', 'e', 'u', 'i', 'o', 'A', 'U', 'I', 'O', 'E'));
+		int allCount = 0;
+		for (String word : st) {
+			int wordCount = 0;
+			for (Character c : word.toCharArray()) {
+				if (sc.contains(c)) {
+					allCount++;
+					wordCount++;
+				}
+			}
+			System.out.println("vowels in " + word + " is:" + wordCount);
+		}
+		System.out.println("all vowels number : " + allCount);
+	}
+	public static void main(String[] args)
+	{
+		Set<String> ss = new HashSet<String>(Arrays.asList("Thinking in java".split(" ")));
+		getVowelsNum(ss);
+	}
+}
