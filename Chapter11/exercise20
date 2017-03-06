@@ -1,0 +1,27 @@
+package pac2;
+
+import java.util.*;
+
+public class Vowels {
+	static void getVowelsNum(Set<String> st) {
+		Set<Character> sc = new HashSet<Character>(Arrays.asList('a', 'e', 'u', 'i', 'o', 'A', 'U', 'I', 'O', 'E'));
+		Map<Character, Integer> m = new HashMap<Character, Integer>();
+		for (String word : st) {
+			for (Character c : word.toCharArray()) {
+				if (sc.contains(c)) {
+					Integer freq = m.get(c);
+					m.put(c, freq == null ? 1 : freq + 1);
+				}
+			}
+		}
+		for (Character c : m.keySet()) {
+			System.out.println(c + " : " + m.get(c));
+		}
+	}
+
+	public static void main(String[] args) {
+		Set<String> ss = new HashSet<String>(Arrays.asList("Thinking in java edition 4".split(" ")));
+		getVowelsNum(ss);
+
+	}
+}
