@@ -1,0 +1,57 @@
+package pac2;
+
+import java.util.*;
+
+class Gerbil {
+	private String gerbilName;
+	private int id;
+	private static int count;
+
+	Gerbil(String s) {
+		gerbilName = s;
+		id = count++;
+	}
+
+	String getname() {
+		return this.gerbilName;
+	}
+
+	void hop() {
+		System.out.println("GerbilNumber:" + id);
+		System.out.println("GerbilNumber is hopping!");
+
+	}
+}
+
+class GerbilGenerator {
+	static Gerbil generator(int marker) {
+		switch (marker) {
+		default:
+		case 0:
+			return new Gerbil("Fuzzy");
+		case 1:
+			return new Gerbil("Lucky");
+		case 2:
+			return new Gerbil("Lucy");
+		case 3:
+			return new Gerbil("Spot");
+		}
+	}
+}
+
+public class Statistics {
+	public static void main(String[] args) {
+		Random rand = new Random(47);
+		Map<String, Gerbil> m = new HashMap<String, Gerbil>();
+		for (int i = 0; i < 1000; i++) {
+			Gerbil gerbil = GerbilGenerator.generator(rand.nextInt(4));
+			m.put(gerbil.getname(), gerbil);
+		}
+		for (String s : m.keySet()) {
+			System.out.println(s + " : " + m.get(s));
+			m.get(s).hop();
+		}
+
+	}
+
+}
