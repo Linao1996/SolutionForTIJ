@@ -1,0 +1,26 @@
+package pac2;
+
+import java.util.*;
+
+public class Statistics {
+	public static void main(String[] args) {
+		Map<String, Integer> m = new LinkedHashMap<String, Integer>();
+		m.put("one", 1);
+		m.put("two", 2);
+		m.put("three", 3);
+		m.put("four", 4);
+		Set<String> s = new TreeSet<String>(m.keySet());
+		Map<String, Integer> n = new LinkedHashMap<String, Integer>();
+		for(String st :s){
+			n.put(st, m.get(st));
+		}
+		System.out.println(n);
+		m.clear();
+		for(String st:n.keySet()){
+			m.put(st, n.get(st));
+		}
+		System.out.println(m);
+
+
+	}
+}
