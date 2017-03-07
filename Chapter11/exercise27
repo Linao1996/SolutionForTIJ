@@ -1,0 +1,39 @@
+package pac2;
+
+import java.util.*;
+
+import net.mindview.util.*;
+
+class Command {
+	private String s;
+
+	Command(String s) {
+		this.s = s;
+	}
+
+	public void operation() {
+		System.out.println(s);
+	}
+}
+
+class GetQueue {
+	private static Queue<Command> q = new LinkedList<Command>();
+
+	static Queue<Command> getQueue() {
+		q.offer(new Command("One"));
+		q.offer(new Command("Two"));
+		q.offer(new Command("Three"));
+		return q;
+	}
+}
+
+public class CommandQueue {
+	public static void main(String[] args) {
+		Queue<Command> q = GetQueue.getQueue();
+		while(q.peek()!=null){
+			q.remove().operation();
+		}
+
+
+	}
+}
