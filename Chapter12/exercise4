@@ -1,0 +1,22 @@
+package pac2;
+class MyEx extends Exception{
+	private String s;
+	public MyEx(String s){
+		super(s);
+		this.s = s;
+	}
+}
+public class getEx {
+	static public void f() throws MyEx{
+		throw new MyEx("f()");
+	}
+	public static void main(String[] args) {
+		try {
+			f();
+		} catch (MyEx a) {
+			System.out.println(a);
+		} finally {
+			System.out.println("reached finally");
+		}
+	}
+}
