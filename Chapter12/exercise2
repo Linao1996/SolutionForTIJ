@@ -1,0 +1,24 @@
+package pac2;
+
+class A {
+	void f(){
+		System.out.println("f()");
+	}
+}
+
+public class getEx {
+	static A a = null;
+	public static void main(String[] args) {
+		try {
+			a.f();
+		} catch (NullPointerException n) {
+			System.out.println(n);
+			a = new A();
+			a.f();
+		} finally {
+			System.out.println("reached finally");
+		}
+
+	}
+
+}
