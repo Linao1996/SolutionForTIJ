@@ -1,0 +1,20 @@
+package pac2;
+
+public class getEx {
+	static int i = 1;
+	static int cu = 0;
+	static int[] ints = { 0, 0, 0, 0, 1 };
+
+	public static void main(String[] args) {
+		while (true) {
+			try {
+				System.out.println(i / ints[cu]);
+				break;
+			} catch (ArithmeticException a) {
+				System.out.println(a);
+				cu++;
+			}
+
+		}
+	}
+}
