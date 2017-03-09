@@ -1,0 +1,33 @@
+package pac2;
+
+import java.util.Random;
+
+class A extends Exception {
+}
+
+class B extends Exception {
+}
+
+class C extends Exception {
+}
+
+public class getEx {
+	static void f() throws A, B, C {
+		Random rand = new Random();
+		switch (rand.nextInt(3)) {
+		case 0:
+			throw new A();
+		case 1:
+			throw new B();
+		case 2:
+			throw new C(); }
+	}
+	public static void main(String[] args)
+	{
+		try{
+			f();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+}
