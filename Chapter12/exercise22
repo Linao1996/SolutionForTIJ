@@ -1,0 +1,33 @@
+package pac2;
+
+import java.util.*;
+
+class MyException extends Exception {
+
+}
+
+public class FailingConstructor {
+	public FailingConstructor() throws MyException {
+		Random rand = new Random();
+		if (rand.nextBoolean()) {
+			throw new MyException();
+		}
+	}
+
+	public static void main(String[] args) {
+		while (true) {
+			try {
+				FailingConstructor f = new FailingConstructor();
+				break;
+			} catch (MyException e) {
+				e.printStackTrace();
+			} finally {
+				System.out.println("ends!");
+			}
+
+		}
+
+		
+	}
+
+}
