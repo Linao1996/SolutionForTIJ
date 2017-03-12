@@ -1,0 +1,42 @@
+package pac2;
+
+class MyException1 extends Exception {
+}
+
+class MyException2 extends MyException1 {
+
+}
+
+class MyException3 extends MyException2 {
+
+}
+
+class A {
+	void throwException() throws MyException1 {
+		throw new MyException1();
+	}
+}
+
+class B extends A {
+	@Override
+	void throwException() throws MyException2 {
+		throw new MyException2();
+	}
+}
+
+public class C extends B {
+	@Override
+	void throwException() throws MyException3 {
+		throw new MyException3();
+	}
+	public static void main(String[] args) throws MyException1{
+		A c = new C(); 
+		try{
+		c.throwException();
+		}catch(MyException1 t){
+			t.printStackTrace();
+		}
+	}
+
+
+}
