@@ -1,0 +1,23 @@
+package pac2;
+
+class MyEx extends RuntimeException {
+	private String s;
+
+	public MyEx(String s) {
+		super(s);
+		this.s = s;
+	}
+}
+
+public class getEx {
+	static public void f() throws MyEx {
+		throw new MyEx("f()");
+	}
+
+	public static void main(String[] args) throws Throwable {
+		f();
+			
+	}	
+		
+	
+}
