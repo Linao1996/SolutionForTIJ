@@ -1,0 +1,54 @@
+package pac2;
+
+import java.util.*;
+
+class MyException extends Exception {
+
+}
+
+class Disposable {
+	public Disposable() throws MyException {
+		Random rand = new Random();
+		if (rand.nextBoolean()) {
+			throw new MyException();
+		}
+	}
+
+	void dispose(String s) {
+		System.out.println(s + " disposed!");
+	}
+}
+
+public class FailingConstructor {
+	Disposable d1;
+	Disposable d2;
+
+	public FailingConstructor() throws MyException {
+		try {
+			d1 = new Disposable();
+			try {
+				d2 = new Disposable();
+			} catch (MyException m2) {
+				System.out.println("failed to created d2");
+				m2.printStackTrace();
+				d1.dispose("d1");// if d2's creation failed,d1 must be disposed!
+			}
+		} catch (MyException m1) {
+			System.out.println("failed to creat d1");
+			m1.printStackTrace();
+		}
+	}
+	public static void main(String[] args) {
+		try{
+			FailingConstructor f = new FailingConstructor();
+		}catch(MyException e){
+			e.printStackTrace();
+		}finally{
+			System.out.println("end of program");
+			
+		}
+
+
+	}
+
+}
