@@ -1,0 +1,37 @@
+package pac1;
+
+// strings/Ex5.java
+// TIJ4 Chapter Strings, Exercise 5, page 521
+/* For each of the basic conversion types in the above table, write the 
+* most complex formatting expression possible. That is, use all the possible
+* format specifiers available for that conversion type.
+*/
+import java.math.*;
+import java.util.*;
+
+
+class ElementBox {
+	private int i;
+	private double d;
+	private float f;
+	private long l;
+
+	public ElementBox(int i, double d, float f, long l) {
+		this.i = i;
+		this.d = d;
+		this.f = f;
+		this.l = l;
+	}
+
+	public String toString() {
+		return String.format("int i:%5d double d : %5f float f : %5f long l : %5d ", i, d, f, l);
+	}
+}
+
+public class Ex6 {
+	public static void main(String[] args) {
+		ElementBox e = new ElementBox(10, 2.4, 3, 4234324);
+		System.out.println(e);
+	}
+
+}
