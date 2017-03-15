@@ -1,0 +1,13 @@
+package pac2;
+
+import java.util.*;
+import java.util.regex.Pattern;
+
+public class StringSplit{
+	public static void main(String[] args){
+        String input = "This !! unusuall use !! of exclamatioin!! points";
+        System.out.println(Arrays.toString(input.split("!!")));
+        System.out.println(Arrays.toString(input.split("!!",3)));
+
+	}
+}
