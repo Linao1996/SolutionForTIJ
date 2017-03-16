@@ -1,0 +1,66 @@
+package pac2;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.regex.*;
+import net.mindview.util.*;
+/* this is what we call "block comments
+ * which is good 
+ * because it's easier to code, eliminating the need of double slash
+ * this code is by lucas
+ */
+
+public class JGrep19 {
+	public static String read(String filename) throws Exception {
+		BufferedReader in = new BufferedReader(new FileReader(filename));
+		String s;
+		StringBuilder sb = new StringBuilder();
+		while ((s = in.readLine()) != null) {
+			sb.append(s + "\n");
+		}
+		in.close();
+		return sb.toString();
+
+	}
+
+	public static void main(String[] args) throws Exception {
+		// if (args.length < 3) {
+		// System.out.println("Usage: java JGrep file regex flag");
+		// System.exit(0);
+		// } class two
+		// int flag = 0;
+		// if (args[2].equals("Pattern.CASE_INSENSITIVE"))
+		// flag = Pattern.CASE_INSENSITIVE;
+		// else if (args[2].equals("Pattern.CANON_EQ"))
+		// flag = Pattern.CANON_EQ;
+		// else if (args[2].equals("Pattern.COMMENTS"))
+		// flag = Pattern.COMMENTS;
+		// else if (args[2].equals("Pattern.DOTALL"))
+		// flag = Pattern.DOTALL;
+		// else if (args[2].equals("Pattern.LITERAL"))
+		// flag = Pattern.LITERAL;
+		// else if (args[2].equals("Pattern.MULTILINE"))
+		// flag = Pattern.MULTILINE;
+		// else if (args[2].equals("Pattern.UNICODE_CASE"))
+		// flag = Pattern.UNICODE_CASE;
+		// else if (args[2].equals("Pattern.UNIX_LINES"))
+		//   flag = Pattern.UNIX_LINES; class one
+		/* adf */
+		//
+		BufferedReader in = new BufferedReader(new FileReader("JGrep19.java"));
+		Matcher m = Pattern.compile("class\\s+(\\w+)").matcher("");
+		Matcher n = Pattern.compile("//.*class\\s+(\\w+)").matcher("");
+		String s;
+		while( (s = in.readLine()) !=null){
+			m.reset(s);
+			n.reset(s);
+			if(m.find() && !n.find()){
+				System.out.println(m.group());
+			}
+			
+		}
+			
+		
+
+	}
+}
