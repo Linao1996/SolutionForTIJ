@@ -1,0 +1,29 @@
+package pac2;
+
+import java.util.*;
+
+import java.util.regex.*;
+import java.io.*;
+import net.mindview.util.*;
+import java.util.*;
+
+public class BufferedInputFile {
+	private static List<String> sl = new ArrayList<String>();
+
+	public static void read(String filename) throws IOException {
+		BufferedReader in = new BufferedReader(new FileReader(filename));
+		String s;
+		while ((s = in.readLine()) != null) {
+			sl.add(s);
+		}
+		in.close();
+	}
+
+	public static void main(String[] args) throws IOException {
+		read("trial.txt");
+		ListIterator<String> li = sl.listIterator(sl.size());
+		while (li.hasPrevious()) {
+			System.out.println(li.previous() );
+		}
+	}
+}
