@@ -1,0 +1,44 @@
+package pac2;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.*;
+
+public class JGrep19 {
+	public static void main(String[] args) throws Exception {
+		Path path = Paths.get("/home/lucas");
+		Path path2 = Paths.get("/home/lucas/trial.txt");
+		long fileSize = Files.size(path2);
+		System.out.println(Files.exists(path2));
+		System.out.println(Files.isHidden(path2));
+		System.out.println(Files.isReadable(path2));
+		System.out.println(Files.isRegularFile(path2));
+		System.out.println(Files.isDirectory(path2));
+		System.out.println("the file size is : " + fileSize);
+		try (DirectoryStream<Path> entries = Files.newDirectoryStream(path)) {
+			for (Path entry : entries) {
+				System.out.println(entry);
+
+			}
+		}
+		Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
+			public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) throws IOException {
+				if (attrs.isDirectory()) {
+					System.out.println(path);
+				}
+				return FileVisitResult.CONTINUE;
+			}
+
+			public FileVisitResult visitFileFailed(Path path, IOException exc) throws IOException {
+				return FileVisitResult.CONTINUE;
+
+			}
+		});
+		
+
+	}
+}
