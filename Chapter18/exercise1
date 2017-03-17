@@ -1,0 +1,50 @@
+package pac2;
+
+import java.util.*;
+import java.nio.file.*;
+import java.io.*;
+import java.util.regex.*;
+import java.nio.channels.*;
+
+public class DirList {
+	public static void main(String[] args) {
+		System.out.println("start:");
+		File path = new File(".");
+		String[] list;
+		list = path.list(new DirFilter("class"));
+		// list = path.list();
+		Arrays.sort(list, String.CASE_INSENSITIVE_ORDER);
+		for (String dirItem : list) {
+			System.out.println(dirItem);
+		}
+	}
+}
+
+class DirFilter implements FilenameFilter {
+	private Pattern pattern;
+
+	public DirFilter(String regex) {
+		pattern = Pattern.compile(regex);
+	}
+
+	public boolean accept(File dir, String name) {
+		String s = "";
+		try {
+			Path p = dir.toPath().resolve(Paths.get(name));
+			if (Files.isRegularFile(p) && Files.isReadable(p)) {
+				byte[] bytes = Files.readAllBytes(p);
+				s = new String(bytes);
+			} else {
+				return false;
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// System.out.println(s);
+
+		// System.out.println(pattern.matcher(s).matches());
+		return pattern.matcher(s).find();
+	}
+}
