@@ -1,0 +1,27 @@
+package pac2;
+
+import java.io.File;
+import java.nio.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.util.*;
+
+public class JGrep19 {
+
+	public static void main(String[] args) throws Exception {
+		Path pathFrom = Paths.get("/home/lucas/trial.txt");
+		Path pathTo = Paths.get("/home/lucas/trial/trial.txt");
+		try{
+		Files.copy(pathFrom, pathTo);// note that the pathTo ,as a new file, can't exist, or there would be an exception.
+		}catch(Exception e){
+			e.printStackTrace();
+			Files.copy(pathFrom, pathTo,StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.COPY_ATTRIBUTES);
+		}
+		byte[] bytes = Files.readAllBytes(pathTo);
+		String content = new String(bytes);
+		System.out.println(content);
+		Files.deleteIfExists(pathTo);
+
+
+	}
+}
