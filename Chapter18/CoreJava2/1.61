@@ -1,0 +1,36 @@
+package pac2;
+
+import java.io.File;
+import java.nio.*;
+import java.nio.file.*;
+
+public class JGrep19 {
+
+	public static void main(String[] args) throws Exception {
+		Path basePath = Paths.get("/A/B");
+		Path workRelative = Paths.get("C/D");
+		Path workPath2 = Paths.get("/A/C");
+		Path workPath = basePath.resolve(workRelative);
+//		Path temPath = basePath.resolveSibling("trial.txt");
+		Path relaPath = basePath.relativize( workPath);//the result is workPath - basePath 
+		Path relaPath2 = basePath.relativize( workPath2);// ../C
+		Path parents = workPath.getParent();
+		Path filename = workPath.getFileName();
+		Path rootname= workPath.getRoot();
+		File toFile = workPath.toFile(); 
+		System.out.println("basePath: " + basePath);
+		System.out.println("workRelative: " + workRelative);
+		System.out.println("workPath: " + workPath);
+		System.out.println("basePath relativize workPath : " + relaPath);
+		System.out.println("basePath relativize /A/C : " + relaPath2);// 
+		System.out.println("the parents of workPath is :" + parents);// 
+		System.out.println("the filename of workPath is "+ filename);
+		System.out.println("the rootname is: " + rootname);
+		System.out.println("toFile: " + toFile);
+//		System.out.println(temPath); 
+
+		
+		
+		
+	}
+}
