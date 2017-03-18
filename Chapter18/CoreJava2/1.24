@@ -1,0 +1,28 @@
+package pac2;
+
+import java.io.PrintWriter;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+
+// exceptions/StormyInning29.java
+// TIJ4 Chapter Exceptions, Exercise 29, page 500
+/* Modify all the exception types in StormyInning.java so that they extend
+* RuntimeException, and show that no exception specifications or try blocks
+* are necessary. Remove the '//!' comments and show how the methods can be 
+* compiled without specifications.
+*/
+
+public class StormyInning29 {
+	public static void main(String[] args) {
+		Charset cset = Charset.forName("UTF-8");
+		String s = "string";
+		ByteBuffer buffer = cset.encode(s);
+		byte[] bytes = buffer.array();
+		ByteBuffer newBuffer = ByteBuffer.wrap(bytes);
+//		CharBuffer cbuf = cset.decode(buffer);
+		CharBuffer cbuf = cset.decode(newBuffer);
+		System.out.println(cbuf.toString());
+
+	}
+}
