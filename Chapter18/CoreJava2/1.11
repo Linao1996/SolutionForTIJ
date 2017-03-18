@@ -1,0 +1,23 @@
+package pac2;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+public class StringMixerAdapter {
+	public static void main(String[] args) throws IOException{
+		InputStream in  = new InputStream() {
+			@Override
+			public int read() throws IOException {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+		};
+		int bytesAvailable =  in.available();
+		if(bytesAvailable > 0){
+			byte[] bytes = new byte[bytesAvailable];
+			 in.read(bytes);
+		}
+		
+	}
+
+}
