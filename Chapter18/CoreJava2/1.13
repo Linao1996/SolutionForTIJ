@@ -1,0 +1,37 @@
+package pac2;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.*;
+import java.nio.*;
+import java.io.InputStream;
+
+public class StringMixerAdapter {
+	public static void main(String[] args) throws IOException {
+		InputStream in = new InputStream() {
+			@Override
+			public int read() throws IOException {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+		};
+		int bytesAvailable = in.available();
+		if (bytesAvailable > 0) {
+			byte[] bytes = new byte[bytesAvailable];
+			in.read(bytes);
+		}
+		// System.out.println(System.getProperty("user.dir"));
+		FileInputStream fin = new FileInputStream("trial.txt");
+		DataInputStream din = new DataInputStream(fin);
+		String s = din.readUTF();
+		double d = din.readDouble();
+		System.out.println(s);
+		DataInputStream dinWithBuffer = new DataInputStream(new BufferedInputStream(new FileInputStream("trial.txt")));
+		DataInputStream dinWithPushAndBuffer = new DataInputStream(
+				new PushbackInputStream(new BufferedInputStream(new FileInputStream("trial.txt"))));
+
+		byte b = (byte) fin.read();
+
+	}
+
+}
