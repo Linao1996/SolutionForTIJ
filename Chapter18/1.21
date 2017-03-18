@@ -1,0 +1,27 @@
+package pac2;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.*;
+import java.nio.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.InputStream;
+
+public class StringMixerAdapter {
+	public static void main(String[] args) throws IOException {
+		Path path = Paths.get("trial.txt");
+		byte[] bytes = Files.readAllBytes(path);
+		String s= new String(bytes);
+		System.out.println(s);//		Files file = ;
+		InputStreamReader isr = new InputStreamReader(new FileInputStream("trial.txt"));
+		PrintWriter pw = new PrintWriter("trial.txt");
+		String name = "Harry Porter";
+		double salary = 4900.0;
+		pw.print(name);
+		pw.print(salary);
+		
+		
+	}
+}
