@@ -1,0 +1,27 @@
+package pac2;
+
+//: Ion/FormattedMemoryInput.java
+import java.io.*;
+import java.nio.*;
+import java.util.*;
+
+public class Ex8 {
+	private static List<String> lines = new LinkedList<String>();
+	private static String filename = "trial2.txt";
+
+	public static void main(String[] args) throws IOException {
+		PrintWriter out = new PrintWriter(filename);
+		BufferedReader br = new BufferedReader(new FileReader("trial.txt"));
+		String s;
+		int lineNum = 0;
+		while ((s = br.readLine()) != null) {
+			lines.add(s + "\n");
+			out.println(lineNum++ + ": " + s );
+		}
+		out.close();
+		br = new BufferedReader(new FileReader("trial2.txt"));
+		while ((s = br.readLine()) != null) {
+			System.out.print(s + "\n");
+		}
+	}
+}
