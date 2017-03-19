@@ -1,0 +1,78 @@
+package pac2;
+
+import java.io.*;
+import java.nio.*;
+import java.util.*;
+import java.util.regex.*;
+
+public final class Directory {
+	public static File[] local(File dir, final String regex) {
+		return dir.listFiles(new FilenameFilter() {
+			private Pattern pattern = Pattern.compile(regex);
+
+			public boolean accept(File dir, String name) {
+				return pattern.matcher(name).matches();
+			}
+		});
+	}
+
+	public static File[] local(String path, final String regex) {
+		return local(new File(path), regex);
+	}
+
+	public static class TreeInfo implements Iterable<File> {
+		public List<File> files = new ArrayList<File>();
+		public List<File> dir = new ArrayList<File>();
+
+		public Iterator<File> iterator() {
+			return files.iterator();
+		}
+
+		public void addAll(TreeInfo other) {
+			files.addAll(other.files);
+			dir.addAll(other.dir);
+		}
+
+		public String toString() {
+			return "files: " + files.toString() + "dir: " + dir.toString();
+		}
+	}
+
+	public static TreeInfo recurseDirs(File startPath, String regex) {
+		TreeInfo result = new TreeInfo();
+		for (File file : startPath.listFiles()) {
+			if (file.isDirectory()) {
+				result.dir.add(file);
+				result.addAll(recurseDirs(file, regex));
+			} else {
+				if (file.getName().matches(regex)) {
+					result.files.add(file);
+				}
+			}
+		}
+		return result;
+
+	}
+	public static TreeInfo walk(File dir, String regex) {
+		return recurseDirs(dir, regex);
+
+	}
+	public static TreeInfo walk(String dir, String regex) {
+		return recurseDirs(new File(dir), regex);
+	}
+	public static TreeInfo walk(String dir){
+		return recurseDirs(new File(dir),".*");
+	}
+	public static TreeInfo walk(File dir){
+		return recurseDirs(dir,".*");
+	}
+	public static void main(String[] args){
+		TreeInfo ti = Directory.walk(".");
+		long length = 0;
+		for(File file : ti.files){
+			length += file.length();
+		}
+		System.out.println("the whole length is: " + length);
+	}
+
+}
