@@ -1,0 +1,37 @@
+package pac2;
+
+import java.io.*;
+import java.util.*;
+import java.nio.*;
+import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+class BinaryFile {
+	public static byte[] read(String file) throws IOException {
+		BufferedInputStream bf = new BufferedInputStream(new FileInputStream(file));
+		try {
+			byte[] data = new byte[bf.available()];
+			bf.read(data);
+			return data; // look how interesting that finally block gets
+							// executed even after try's return;
+		} finally {
+			bf.close();
+		}
+	}
+}
+
+public class Ex4 {
+	private static TreeMap<Byte, Integer> charMap = new TreeMap<Byte, Integer>();
+	public static void main(String[] args) throws IOException {
+		byte[] data = BinaryFile.read("trial.txt");
+		for(int i = 0 ; i < data.length; i ++){
+			charMap.put(data[i], charMap.get(data[i]) == null ? 1 : (charMap.get(data[i]) + 1));
+		}
+		System.out.println(charMap);
+
+
+		
+	}
+	}
