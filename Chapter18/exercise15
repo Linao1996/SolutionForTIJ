@@ -1,0 +1,74 @@
+package pac2;
+// io/StoringAndRecoveringData15.java
+// TIJ4 Chapter IO, Exercise 15, page 934
+/* Look up DataOutputStream and DataInputStream in the JDK documentation. 
+* Starting with StoringAndRecoveringData.java, create a program that stores
+* and then retrieves all the different possible types provided by the 
+* DataOutputStream and DataInputStream classes. Verify that the values
+* are stored and retrieved correctly.
+*/
+
+/* My solution to one of the exercises in 
+* Thinking in Java 4th Edition (by Bruce Eckel).
+* It compiles and runs correctly using JDK 1.6.0
+* @author Greg Gordon
+* @author www.greggordon.org
+* February, 2008
+*/
+
+import java.io.*;
+import static net.mindview.util.Print.*; 
+public class StoringAndRecoveringData15 {
+	public static void main(String[] args) throws IOException {
+		DataOutputStream out = new DataOutputStream(
+			new BufferedOutputStream(
+				new FileOutputStream("Data.txt")));
+		System.out.println("Initial out.size() = " + out.size());
+		byte[] ba = {0,1,2,3};
+		// Store first 3 bytes of byte[] ba:
+		out.write(ba,0,3);
+		// Store all 4 bytes in byte[] ba:
+		out.write(ba);//using out.readInt(), the result is 66051 =  0x00010203 = 65536+2*256+ 3 ; note an int use 4 bytes' memory spacing 
+		out.write((int)255); // Stores the lower 8 bits of int
+		out.writeBoolean(true);
+		out.writeByte(1000000);// using out.readByte(), the result is 64 , for that 10,000,000 to  binary 
+		// is 0b100110001001011010000000, the lower eight cases of which is 01000000.
+		out.writeBytes((String)"hi");
+		out.writeChar(120);
+		out.writeChars("hi");		
+		out.writeDouble(3.14159);
+		out.writeFloat(2.1f);
+		out.writeInt(1057);
+		out.writeLong(123456789L);
+		out.writeShort(123);
+		out.writeUTF("Nice piece of work");
+		System.out.println("After writing, out.size() = " + out.size());		
+		out.close();
+		System.out.println("Reading:");
+		DataInputStream in = new DataInputStream(
+			new BufferedInputStream(
+				new FileInputStream("Data.txt")));
+		byte[] baIn = new byte[3];
+		System.out.println("bytes read by in.read(baIn, 0, 3) = " + in.read(baIn, 0, 3));
+		print("baIn = ");
+		for(int i = 0; i < baIn.length; i++)
+			print(baIn[i] + " ");
+		System.out.println();
+		// Read next 4 bytes as int:
+		System.out.println("in.readInt() = " + in.readInt());
+		System.out.println("in.read() = " + in.read());		
+		System.out.println("in.readBoolean() = " + in.readBoolean());		
+		System.out.println("in.readByte() = " + in.readByte());		
+		System.out.println("in.read() = " + in.read()); // ASCII h = 104
+		System.out.println("in.read() = " + in.read()); // ASCII i = 105		
+		System.out.println("in.readChar() = " + in.readChar());
+		System.out.println("in.readChar() = " + in.readChar());
+		System.out.println("in.readChars() = " + in.readChar());// there is no readChars() though;
+		System.out.println("in.readDouble() = " + in.readDouble());
+		System.out.println("in.readFloat() = " + in.readFloat());
+		System.out.println("in.readInt() = " + in.readInt());
+		System.out.println("in.readLong() = " + in.readLong());
+		System.out.println("in.readShort() = " + in.readShort());
+		System.out.println("in.readUTF() = " + in.readUTF());		
+	}
+}
