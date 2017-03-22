@@ -1,0 +1,79 @@
+package pac2;
+
+import java.io.*;
+import java.util.*;
+
+import net.mindview.util.Directory;
+
+import java.nio.*;
+import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+class BinaryFile {
+	public static byte[] read(File file) throws IOException {
+		BufferedInputStream bf = new BufferedInputStream(new FileInputStream(file));
+		try {
+			byte[] data = new byte[bf.available()];
+			bf.read(data);
+			return data; // look how interesting that finally block gets
+							// executed even after try's return;
+		} finally {
+			bf.close();
+		}
+	}
+
+	public static byte[] read(String file) throws IOException {
+		File file1 = new File(file);
+		byte[] data = read(file1);
+		return data;
+	}
+
+}
+
+public class Ex20 {
+	static boolean beginWith(byte[] data) {
+		if (data.length < 4) {
+			return false;
+		}
+		boolean result = true;
+		byte[] byteSet = { (byte) 0xca, (byte) 0xfe, (byte) 0xba, (byte) 0xbe };
+		for (int i = 0; i < byteSet.length; i++) {
+			if (data[i] != byteSet[i]) {
+				result = false;
+			}
+		}
+		return result;
+	}
+
+	static List<File> getFile(File path) {
+		List<File> result = new ArrayList<File>();
+		for (File file : path.listFiles()) {
+			if (file.isDirectory()) {
+				result.addAll(getFile(file));
+			}
+			if (file.isFile()) {
+				result.add(file);
+			}
+		}
+		return result;
+	}
+
+	static List<File> getFile(String path) {
+		File file = new File(path);
+		return getFile(file);
+	}
+
+	public static void main(String[] args) throws IOException {
+		List<File> allFiles = getFile(".");
+		for (File file : allFiles) {
+			if (file.getName().matches(".*\\.class")) {
+				System.out.println(file.getName());
+				System.out.println(beginWith(BinaryFile.read(file)));
+			}
+
+		}
+	}
+
+}
