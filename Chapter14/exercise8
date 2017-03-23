@@ -1,0 +1,36 @@
+package pac1;
+
+class A {
+}
+
+class B extends A {
+}
+
+class C extends B {
+}
+
+public class getHierarchy {
+	static void printHierarchy(Object object) {
+		A a = new A();
+		Class c = object.getClass();
+		System.out.println(c.getSimpleName());
+		Class superClass = c.getSuperclass(); // return null if c is at the top of inheritance hierarchy.
+		try {
+			if (superClass != null) {
+				Object obj = superClass.newInstance();
+				printHierarchy(obj);
+			}
+		} catch (InstantiationException e) {
+			System.out.println("Cannot instantiate");
+		} catch (IllegalAccessException i) {
+			System.out.println("Cannot access");
+		}
+
+	}
+
+	public static void main(String[] args) {
+		printHierarchy(new C());
+
+	}
+
+}
