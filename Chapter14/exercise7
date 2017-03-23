@@ -1,0 +1,60 @@
+package pac1; // typeinfo/Shapes5.java // TIJ4 Chapter Typeinfo, Exercise 5, page 561
+
+/* Implement a rotate(Shape) method in Shapes.java, such that it checks
+* to see if it is rotating a Circle (and, if so, doesn't perform the
+* operation).
+*/
+
+import java.util.*;
+
+abstract class Shape {
+	public boolean flag;
+
+	void draw() {
+		System.out.println(this + ".draw()");
+	}
+
+	abstract public String toString();
+}
+
+class Circle extends Shape {
+	boolean flag = false;
+
+	public String toString() {
+		return (flag ? "H" : "N") + "Circle";
+	}
+}
+
+class Square extends Shape {
+	boolean flag = false;
+
+	public String toString() {
+		return (flag ? "H" : "N") + "Square";
+	}
+}
+
+class Triangle extends Shape {
+	boolean flag = false;
+
+	public String toString() {
+		return (flag ? "H" : "N") + "Triangle";
+	}
+}
+
+public class Shapes5 {
+	public static void setFlag(Shape s) {
+		if (s instanceof Circle) {
+			// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// s.flag = true; // not this, you are essentially set Shape's flag  as true rather than a Circle;
+			((Circle) s).flag = true;
+		}
+	}
+
+	public static void main(String[] args) {
+		List<Shape> shapeList = Arrays.asList(new Circle(), new Square(), new Triangle());
+		for (Shape shape : shapeList) {
+			setFlag(shape);
+			shape.draw();
+		}
+	}
+}
