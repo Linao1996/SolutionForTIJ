@@ -1,0 +1,18 @@
+package pac1;
+// typeinfo/Ex9.java
+// TIJ4 Chapter Typeinfo, Exercise 9, page 562
+
+
+public class Ex9 {
+	static char[] charArray = new char[4];
+	public static void main(String[] args) {
+		try{
+			charArray.getClass();
+			System.out.println(charArray.getClass().getSuperclass());
+			System.out.println(charArray instanceof Object);
+
+		}catch(Exception e){
+			System.out.println("char[] is an primitive");
+		}
+	}
+}
