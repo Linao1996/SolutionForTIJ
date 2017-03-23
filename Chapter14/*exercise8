@@ -1,0 +1,49 @@
+package pac1;
+//: typeinfo/SweetShop.java
+
+// Examination of the way the class loader works.
+
+
+
+// there is a problem in this program, and I can't figure out the reason.
+//it seems that s == "a" and s.equals("a") return different result...
+class Candy {
+	static {
+		System.out.println("Loading Candy");
+	}
+}
+
+class Gum {
+	static {
+		System.out.println("Loading Gum");
+	}
+}
+
+class Cookie {
+	static {
+		System.out.println("Loading Cookie");
+	}
+}
+
+public class SweetShop {
+	public static void main(String[] args) {
+		// String st = "A";
+		// System.out.println(st == "A"); // return true, eh...
+		for (String s : args) {
+			System.out.println(s);
+			if (s.equals("Candy")) {
+				
+				new Candy();
+			} else if (s.equals("Gum")) {
+				new Gum();
+			} else if (s == "Cookie") { // so weird that s == Cookie returns false, while s.equals("Cookie") returns true;
+				new Cookie();
+			} else {
+				System.out.println("Class not found!");
+			}
+		}
+	}
+} /*
+	 * Output: inside main Loading Candy After creating Candy Loading Gum After
+	 * Class.forName("Gum") Loading Cookie After creating Cookie
+	 */// :~
