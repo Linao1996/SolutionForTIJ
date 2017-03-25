@@ -1,0 +1,17 @@
+package pac1;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class B{
+	public static void main(String[] args) throws Exception {
+		A a = new A();
+		a.f();
+		a.g();
+		// after using javap -private A
+		Method m = a.getClass().getDeclaredMethod("p");
+		m.setAccessible(true);
+		m.invoke(a);
+	}
+	
+}
