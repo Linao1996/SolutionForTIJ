@@ -1,4 +1,5 @@
 package pac1;
+import java.util.*;
 
 interface Interface {
 	void doSomething();
@@ -27,15 +28,22 @@ class SimpleProxy implements Interface {
 	}
 
 	public void doSomething() {
+
 		method1++;
 		System.out.println("SimpleProxy doSomething : " + method1);
+		long time1 = System.nanoTime();
 		proxied.doSomething();
+		long time2 = System.nanoTime();
+		System.out.println("Time: " + (time2 - time1));
 	}
 
 	public void somethingElse(String arg) {
 		method2++;
 		System.out.println("SimpleProxy somethingElse " + arg + ": " + method2);
+		long time1 = System.nanoTime();
 		proxied.somethingElse(arg);
+		long time2 = System.nanoTime();
+		System.out.println("Time: " + (time2 - time1));
 	}
 }
 
@@ -47,8 +55,6 @@ public class SimpleProxyDemo {
 
 	public static void main(String[] args) {
 		consumer(new RealObject());
-		consumer(new SimpleProxy(new RealObject()));
-		consumer(new SimpleProxy(new RealObject()));
 		consumer(new SimpleProxy(new RealObject()));
 	}
 } /*
