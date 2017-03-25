@@ -1,0 +1,57 @@
+package pac1;
+
+interface Interface {
+	void doSomething();
+
+	void somethingElse(String arg);
+}
+
+class RealObject implements Interface {
+	public void doSomething() {
+		System.out.println("doSomething");
+	}
+
+	public void somethingElse(String arg) {
+		System.out.println("somethingElse " + arg);
+	}
+}
+
+class SimpleProxy implements Interface {
+	private static int method1 = 0;
+	private static int method2 = 0;
+
+	private Interface proxied;
+
+	public SimpleProxy(Interface proxied) {
+		this.proxied = proxied;
+	}
+
+	public void doSomething() {
+		method1++;
+		System.out.println("SimpleProxy doSomething : " + method1);
+		proxied.doSomething();
+	}
+
+	public void somethingElse(String arg) {
+		method2++;
+		System.out.println("SimpleProxy somethingElse " + arg + ": " + method2);
+		proxied.somethingElse(arg);
+	}
+}
+
+public class SimpleProxyDemo {
+	public static void consumer(Interface iface) {
+		iface.doSomething();
+		iface.somethingElse("bonobo");
+	}
+
+	public static void main(String[] args) {
+		consumer(new RealObject());
+		consumer(new SimpleProxy(new RealObject()));
+		consumer(new SimpleProxy(new RealObject()));
+		consumer(new SimpleProxy(new RealObject()));
+	}
+} /*
+	 * Output: doSomething somethingElse bonobo SimpleProxy doSomething
+	 * doSomething SimpleProxy somethingElse bonobo somethingElse bonobo
+	 */// :~
