@@ -1,17 +1,45 @@
-package pac1;
+package pac2;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class B{
-	public static void main(String[] args) throws Exception {
-		A a = new A();
-		a.f();
-		a.g();
-		// after using javap -private A
-		Method m = a.getClass().getDeclaredMethod("p");
-		m.setAccessible(true);
-		m.invoke(a);
+import pac1.*;
+
+public class SecretBreaker {
+	public static void main(String[] args) throws Exception{ 
+		B b = SecretMaker.getA();
+//		b.f();
+		for (Method d : b.getClass().getDeclaredMethods()) {
+			d.setAccessible(true);
+			d.invoke(b);
+		}
+
 	}
-	
+
 }
+/*
+package pac1;
+
+class A implements B {
+	public void f() {
+	};
+
+	void g() {
+
+	}
+
+	protected void p() {
+	};
+
+	private void q() {
+		System.out.println("This is private method");
+	};
+}
+
+public class SecretMaker {
+	public static A getA() {
+		return new A();
+	}
+
+}
+/*
