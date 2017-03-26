@@ -1,0 +1,17 @@
+package pac1;
+
+import java.util.*;
+public class Generators{
+	public static <T>List<T> fill(List<T> l,Generator<T> gen,int n){
+		for(int i = 0 ; i < n ; i++){
+			l.add(gen.next());
+		}
+		return l;
+	}
+	public static void main(String[] args){
+		List<Integer> li = fill(new ArrayList<Integer>(),new Fibonacci(), 18);
+		for(Integer i  : li){
+			System.out.println(i);
+		}
+	}
+}
