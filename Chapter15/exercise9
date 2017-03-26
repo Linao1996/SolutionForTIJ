@@ -1,0 +1,13 @@
+package pac1;
+
+public class GenericMethod {
+	public <A, B, C> void f(A a, B b, C c) {
+		System.out.println(a.getClass().getSimpleName() + "\n" + b.getClass().getSimpleName() + "\n"
+				+ c.getClass().getSimpleName() + "\n\n");
+	}
+
+	public static void main(String[] args) {
+		GenericMethod gm = new GenericMethod();
+		gm.f(1,1,'f');
+	}
+}
