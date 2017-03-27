@@ -1,0 +1,62 @@
+package pac1;
+
+import java.util.*;
+import net.mindview.util.*;
+
+class BigFish {
+	private static int count = 1;
+	private final int id = count++;
+
+	private BigFish() {
+	}
+
+	public String toString() {
+		return "BigFish id: " + id;
+	}
+
+	public static Generator<BigFish> generator() {
+		return new Generator<BigFish>() {
+			@Override
+			public BigFish next() {
+				// TODO Auto-generated method stub
+				return new BigFish();
+			}
+		};
+	}
+}
+class LittleFish{
+	private static int count = 1;
+	private final int id = count++;
+	private LittleFish(){}
+	public String toString(){
+		return "LittleFish id: " + id;
+	}
+	public static Generator<LittleFish> generator(){
+		return new Generator<LittleFish>(){
+			@Override
+			public LittleFish next() {
+				// TODO Auto-generated method stub
+				return new LittleFish();
+			}
+			
+		};
+	}
+}
+public class Ocean{
+	public static void main(String[] args){
+		List<BigFish> lbf = new LinkedList<BigFish>();
+		Generators.fill(lbf, BigFish.generator(), 4);
+		List<LittleFish> llf = new LinkedList<LittleFish>();
+		Generators.fill(llf, LittleFish.generator(), 15);
+		Random rand = new Random();
+		for(LittleFish littlefish : llf){
+			System.out.println(lbf.get(rand.nextInt(lbf.size())) + " is eating " + littlefish );
+			
+		}
+
+
+
+		
+	}
+	
+}
