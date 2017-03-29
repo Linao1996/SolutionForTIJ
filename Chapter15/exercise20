@@ -1,0 +1,44 @@
+package pac1;
+
+import java.util.*;
+import net.mindview.util.*;
+
+interface A {
+	void f();
+
+	void g();
+}
+
+class B implements A {
+	void p() {
+
+	}
+
+	@Override
+	public void f() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void g() {
+		// TODO Auto-generated method stub
+
+	}
+}
+
+public class C{
+	static <T extends A> T p(T t){
+		t.f();
+		t.g();
+		return t;
+	}
+	public static void main(String[] args){
+		B b = new B();
+		p(b);
+		
+
+		
+	}
+
+}
