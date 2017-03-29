@@ -1,0 +1,64 @@
+package pac1;
+
+// generics/ClassTypeCapture21.java
+// TIJ4 Chapter Generics, Exercise 21, page 663
+/* Modify ClassTypeCapture.java by adding a Map<String,Class<?>>,
+* a method addType(String typename, Class<?> kind), and a
+* method createNew(String typename). creatNew() will either
+* produce a new instance of the class associated with its 
+* argument string, or produce an error message.
+*/
+import java.util.*;
+
+class Building {
+}
+
+class House extends Building {
+}
+
+public class ClassTypeCapture21<T> {
+	Class<T> kind;
+	Map<String,Class<?>> map;
+	void addType(String s, Class<?> kind){
+		map.put(s, kind);
+	}
+	Object createNew(String typename) throws InstantiationException, IllegalAccessException{
+		if(map.get(typename) != null){
+			return map.get(typename).newInstance();
+		}
+		else{
+			System.out.println(typename + " is not in the map");
+			return null;
+		}
+	}
+	public ClassTypeCapture21(Class<T> kind) {
+		this.kind = kind;
+	}
+	public ClassTypeCapture21(Class<T> kind,Map<String,Class<?>> map){
+		this.kind = kind;
+		this.map = map;
+	}
+
+	public boolean f(Object arg) {
+		return kind.isInstance(arg);
+	}
+	public static void main(String[] args){
+		ClassTypeCapture21<Building> building = new ClassTypeCapture21<Building>(Building.class,new HashMap<String,Class<?>>());
+		building.addType("Building", Building.class);
+		building.addType("House", House.class);
+		System.out.println(building.map);
+		try{
+			Building b = (Building)building.createNew("Building");
+			House h = (House)building.createNew("House");
+			System.out.println(b.getClass().getName());
+			System.out.println(h.getClass().getName());
+			System.out.println(b instanceof House);
+			System.out.println(h instanceof House);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+
+}	
