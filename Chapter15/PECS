@@ -1,0 +1,38 @@
+package pac1;
+
+import java.util.*;
+
+class A {
+
+}
+
+class B extends A {
+}
+
+class C extends B {
+
+}
+
+public class Collections {
+	public static <T> void copy(List<? super T> dest, List<? extends T> src) {
+		for (int i = 0; i < src.size(); i++)
+			dest.set(i, src.get(i));
+	}
+
+	public static void main(String[] args) {
+		List<A> superClass = new ArrayList<A>();
+		for (int i = 0; i < 10; i++) {
+			superClass.add(new A());
+		}
+		List<? super B> dest = superClass; 
+		List<C> childClass = new ArrayList<C>();
+		for (int i = 0; i < 10; i++) {
+			childClass.add(new C());
+		}
+		List<? extends B> src = childClass;
+		copy(dest,src);
+		System.out.println(dest);
+
+	}
+
+}
