@@ -1,0 +1,51 @@
+package pac1;
+
+import java.util.*;
+
+class A {
+}
+
+class B extends A {
+}
+
+class C extends B {
+}
+
+class Generic1<T> {
+	T t;
+
+	void take(T t) {
+		this.t = t;
+
+	}
+}
+
+class Generic2<T> {
+	T t;
+
+	T give() {
+		return t;
+	}
+}
+
+public class Test<T> {
+	Generic1<B> g1 = new Generic1<B>();
+	Generic2<B> g2 = new Generic2<B>();
+
+	void p(Generic1<? super T> t, T p) {
+		t.take(p);
+	}
+
+	T q(Generic2<? extends T> t) {
+		return t.give();
+	}
+	public static void main(String[] args){
+		Test<B> test = new Test<B>();
+		test.p(new Generic1<A>(), new B());
+		test.p(new Generic1<A>(), new C());
+		test.q(new Generic2<C>());
+
+		
+	}
+
+}
