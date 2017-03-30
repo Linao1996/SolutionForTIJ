@@ -1,0 +1,46 @@
+package pac1;
+
+interface A {
+	void f();
+}
+
+interface B {
+	void g();
+}
+
+class C<T extends A> {
+	C(T t) {
+		t.f();
+	}
+
+}
+
+class D<T extends B> {
+	D(T t) {
+		t.g();
+	}
+
+}
+
+class E implements A, B {
+
+	@Override
+	public void g() {
+		System.out.println("interface B: g()");
+
+	}
+
+	@Override
+	public void f() {
+		System.out.println("interface A: f()");
+	}
+}
+
+public class Test {
+	public static void main(String[] args) {
+
+		C<E> c = new C<E>(new E());
+		D<E> d = new D<E>(new E());
+
+	}
+}
