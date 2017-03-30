@@ -1,0 +1,8 @@
+package pac1;
+
+public class CovariantArrays {
+	public static void main(String[] args) {
+		Number[] fruit = new Integer[10];
+		fruit[0] = new Integer(2); // OK
+	}
+}
