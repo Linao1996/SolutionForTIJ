@@ -1,0 +1,18 @@
+package pac1;
+// generics/Ex27.java
+// TIJ4 Chapter Generics, Exercise 27, page 680
+// Show that covariancd doesn't work with Lists using Numbers and 
+// Integers, then introduce wildcards.
+import java.util.*;
+
+public class CovariantArrays {
+	public static void main(String[] args) {
+		// compile error :
+		// List<Number> lnumber = new ArrayList<Integer>();
+		List<? extends Number> lnumber = new ArrayList<Integer>();
+		// compile error:
+		// lnumber.add(new Integer(3))
+		lnumber.add(null);
+		System.out.println(lnumber);
+	}	
+}
