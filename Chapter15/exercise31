@@ -1,0 +1,10 @@
+package pac2;
+
+interface Payable<T> {
+}
+
+class Employee implements Payablex {
+}
+
+class Hourly extends Employee implements Payablex {
+} /// :~
