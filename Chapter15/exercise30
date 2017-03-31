@@ -1,0 +1,25 @@
+package pac2;
+
+public class Holder<T> {
+  private T value;
+  public Holder() {}
+  public Holder(T val) { value = val; }
+  public void set(T val) { value = val; }
+  public T get() { return value; }
+  public boolean equals(Object obj) {
+    return value.equals(obj);
+  }	
+  public static void main(String[] args) {
+	  Holder<Integer> hi = new Holder<Integer>();
+	  int i = 9;
+	  hi.set(i);
+	  int j = hi.get();
+	  System.out.println(i);
+	  Holder<Character> hc = new Holder<Character>();
+	  char c = 'c';
+	  hc.set(c);
+	  char ch = hc.get();
+ System.out.println(ch);
+ // there is more 
+  }
+} 
