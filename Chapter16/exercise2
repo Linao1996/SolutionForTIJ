@@ -1,0 +1,19 @@
+package pac1;
+
+import java.util.*;
+
+class Bery {
+}
+
+public class Test {
+	public static Bery[] getBery(int n) {
+		Bery[] bery = new Bery[n];
+		for(int i = 0 ; i < n ; i++){
+			bery[i] = new Bery();
+		}
+		return bery;
+	}
+	public static void main(String[] args){
+		getBery(4);
+	}
+}
