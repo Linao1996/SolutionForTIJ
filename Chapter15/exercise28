@@ -1,4 +1,4 @@
-package pac1;
+package pac2;
 
 import java.util.*;
 
@@ -28,24 +28,24 @@ class Generic2<T> {
 	}
 }
 
-public class Test<T> {
+public class Test {
 	Generic1<B> g1 = new Generic1<B>();
 	Generic2<B> g2 = new Generic2<B>();
 
-	void p(Generic1<? super T> t, T p) {
+	<T> void p(Generic1<? super T> t, T p) {
 		t.take(p);
 	}
 
-	T q(Generic2<? extends T> t) {
+	<T> T q(Generic2<? extends T> t) {
 		return t.give();
 	}
-	public static void main(String[] args){
-		Test<B> test = new Test<B>();
+
+	public static void main(String[] args) {
+		Test test = new Test();
 		test.p(new Generic1<A>(), new B());
 		test.p(new Generic1<A>(), new C());
 		test.q(new Generic2<C>());
 
-		
 	}
 
 }
