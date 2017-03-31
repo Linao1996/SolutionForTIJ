@@ -1,0 +1,15 @@
+package pac1;
+
+import java.util.*;
+
+class A {
+}
+
+public class Ex5 {
+	public static void main(String[] args) {
+		A[][] arrayA = new A[4][2];
+		System.out.println(Arrays.deepToString(arrayA));
+
+	}
+
+}
