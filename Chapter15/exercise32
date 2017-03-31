@@ -1,0 +1,38 @@
+package pac2;
+
+class FixedSizeStack<T> {
+	private int index = 0;
+	private Object[] storage;
+
+	public FixedSizeStack(int size) {
+		storage = new Object[size];
+	}
+
+	public void push(T item) {
+//		if (index < storage.length) {
+//			storage[index++] = item;
+//		}
+//	}
+
+	@SuppressWarnings("unchecked")
+	public T pop() {
+//		if (index > 0) {
+//			return (T) storage[--index];
+//		}
+		return null;
+	}
+}
+
+public class GenericCast {
+	public static final int SIZE = 3;
+
+	public static void main(String[] args) {
+		FixedSizeStack<String> strings = new FixedSizeStack<String>(SIZE);
+		for (String s : "A B C D E F G H I J".split(" "))
+			strings.push(s);
+		for (int i = 0; i < SIZE; i++) {
+			String s = strings.pop();
+			System.out.print(s + " ");
+		}
+	}
+}
