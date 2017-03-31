@@ -1,0 +1,67 @@
+package pac2;
+
+class Coffee {
+	private int price;
+
+	public void setPrice(int i) {
+		price = i;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+}
+
+class Decorator extends Coffee {
+	protected Coffee coffee;
+	protected String name;
+
+	Decorator(Coffee coffee ,String name) {
+		this.coffee = coffee;
+		this.name = name;
+	}
+
+	public void setPrice(int price) {
+		coffee.setPrice(price);
+	}
+
+	public int getPrice() {
+		return coffee.getPrice();
+	}
+
+}
+
+class MilkCoffee extends Decorator {
+	MilkCoffee(Coffee coffee) {
+		super(coffee,"milkcoffee");
+	}
+
+	
+	public String toString(){
+		return name;
+	}
+}
+
+class Foam extends Decorator {
+
+	Foam(Coffee coffee) {
+		super(coffee,"foam");
+	}
+
+	public String toString(){
+		return name;
+	}
+}
+
+public class Ex38 {
+	public static void main(String[] args) {
+		MilkCoffee c = new MilkCoffee(new Coffee());
+		Foam f = new Foam(new Coffee());
+		c.setPrice(15);
+		f.setPrice(45);
+		System.out.println(c + ": "+  c.getPrice());
+		System.out.println(f + ": "+  f.getPrice());
+
+	}
+
+}
