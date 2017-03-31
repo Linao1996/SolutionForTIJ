@@ -1,0 +1,27 @@
+package pac1;
+
+import java.util.*;
+
+public class Ex3 {
+	public static double[][][] getDoubleArray(int row, int column,int next, double min, double max) {
+		Random rand = new Random();
+		double[][][] doubleArray = new double[row][column][next];
+		for (int i = 0; i < doubleArray.length; i++) {
+			for (int j = 0; j < doubleArray[i].length; j++) {
+				for(int p = 0 ; p < doubleArray[i][j].length ; p++){
+				doubleArray[i][j][p] = (max -min)*rand.nextDouble() + min;// note how to create an double in a range
+				}
+			}
+		}
+		return doubleArray;
+	}
+	public static void printArray(double[][][] doubleArray){
+		System.out.println(Arrays.deepToString(doubleArray));
+	}
+	public static void main(String[] args){
+		printArray(getDoubleArray(3,4,5,7,19));
+		printArray(getDoubleArray(5,4,5,9,10));
+		printArray(getDoubleArray(1,4,8,7,40));
+	}
+
+}
