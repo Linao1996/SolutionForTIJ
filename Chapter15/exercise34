@@ -1,0 +1,30 @@
+package pac2;
+
+abstract class BaseGeneric<T extends BaseGeneric<T>> {
+	abstract T create(T t);
+
+	T factory(T t) {
+		return create(t);
+	}
+}
+
+
+
+class ResultingClass extends BaseGeneric<ResultingClass> {
+
+	@Override
+	ResultingClass create(ResultingClass t) {
+		return t;
+	}
+
+}
+
+public class Ex34 {
+	public static void main(String[] args) {
+		ResultingClass rc = new ResultingClass();
+		ResultingClass rc2;
+		rc2 = rc.factory(rc);
+		rc.create(rc).factory(rc2);
+	}
+
+}
