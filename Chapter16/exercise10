@@ -1,0 +1,13 @@
+
+//: arrays/ArrayOfGenerics.java
+// It is possible to create arrays of generics.
+import java.util.*;
+
+public class ArrayOfGenerics {
+	public static void main(String[] args) {
+		List<List<String>> ls;
+		ls = new ArrayList<List<String>>(); 
+		ls.add(new ArrayList<String>());
+		List<? extends Object> objects = ls; 
+	}
+}
