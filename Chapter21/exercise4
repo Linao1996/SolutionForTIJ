@@ -1,0 +1,40 @@
+package pac1;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+//: concurrency/BasicThreads.java
+// The most basic use of the Thread class.
+class Fibonacci implements Runnable {
+	int n;
+	Fibonacci(int n) {
+		this.n  = n;
+	}
+
+	@Override
+	public void run() {
+		long former = 1;
+		long current = 1;
+		for (int i = 0; i < n; i++) {
+
+			long next = former + current;
+			System.out.println(next);
+			former = current;
+			current = next;
+		}
+	}
+}
+
+public class BasicThreads {
+	public static void main(String[] args) {
+		ExecutorService exec = Executors.newCachedThreadPool();
+		for(int i = 0; i<3;i++){
+			exec.execute(new Fibonacci(50+i));
+		}
+		exec.shutdown();
+	}
+} /*
+	 * Output: (90% match) Waiting for LiftOff #0(9), #0(8), #0(7), #0(6),
+	 * #0(5), #0(4), #0(3), #0(2), #0(1), #0(Liftoff!),
+*/// :~
