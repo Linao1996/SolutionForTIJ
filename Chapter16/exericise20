@@ -1,0 +1,35 @@
+package pac1;
+
+import java.text.DateFormat.Field;
+import java.util.*;
+
+import pac2.A;
+
+class Bery {
+	int i;
+
+	Bery(int i) {
+		this.i = i;
+	}
+
+	public String toString() {
+		return i + "";
+	}
+
+	@Override
+	public boolean equals(Object b) {
+		return (b.getClass().getSimpleName().equals("Bery")) && ((Bery) b).i == this.i ? true : false;
+
+	}
+
+}
+
+public class Ex18 {
+	public static void main(String[] args) {
+		Bery[][] a1 = { { new Bery(1), new Bery(2), new Bery(3) }, { new Bery(4), new Bery(5), new Bery(6) } };
+		Bery[][] a2 = { { new Bery(1), new Bery(2), new Bery(3) }, { new Bery(4), new Bery(5), new Bery(6) } };
+
+		System.out.println(Arrays.deepEquals(a1, a2));
+
+	}
+}
