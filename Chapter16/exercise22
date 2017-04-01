@@ -1,0 +1,44 @@
+package pac1;
+
+import java.util.*;
+
+class Bery implements Comparable<Bery> {
+	int i;
+
+	Bery(int i) {
+		this.i = i;
+	}
+
+	public String toString() {
+		return i + "";
+	}
+
+	@Override
+	public int compareTo(Bery o) {
+		return this.i > o.i ? 1 : (this.i == o.i) ? 0 : -1;
+	}
+
+}
+
+public class Ex18 {
+	private static final int SIZE = 10;
+
+	public static void main(String[] args) {
+
+		Random rand = new Random();
+		Bery[] berys = new Bery[SIZE];
+		for (int i = 0; i < berys.length; i++) {
+			berys[i] = new Bery(rand.nextInt(100));
+		}
+		Bery bery = new Bery(50);
+		berys[berys.length - 1] = bery;
+		System.out.println(Arrays.asList(berys));
+		int index = Arrays.binarySearch(berys, bery);
+		System.out.println(index);
+		Arrays.sort(berys);
+		int index2 = Arrays.binarySearch(berys, bery);
+
+		System.out.println(index2);
+		System.out.println(Arrays.asList(berys));
+	}
+}
