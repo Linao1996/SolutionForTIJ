@@ -1,0 +1,33 @@
+package pac2;
+
+import java.util.Arrays;
+import java.util.*;
+
+class BerylliumSphere {
+}
+
+public class EX1<T> {
+	void takeBery() {
+		T[] array = (T[]) new Object[4];
+		array[0] = (T) new Integer(3);
+		array[1] = (T) new Double(3.0);
+		array[2] = (T) new String("fasd");
+//		array[3] = (T)3; // can't cast from int to T; it seems that autoboxing can't work with cast.
+		Object[] array2 = new Object[3];
+		array2[0] = 3; //autoboxing works here.
+//		System.out.println(array[1].getClass().getSimpleName());// Double
+		System.out.println(array.getClass().getSimpleName());
+		System.out.println(Arrays.asList(array));
+	}
+
+	public static void main(String[] args) {
+		EX1<Integer> ex = new EX1<Integer>();
+		ex.takeBery();
+		System.out.println("================================");
+		List<String>[] ls;
+		ls = (List<String>[])new Object[3];// ClassCastException, why?
+		System.out.println(ls.getClass().getSimpleName()); 
+
+	}
+
+}
