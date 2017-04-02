@@ -1,0 +1,51 @@
+package pac1;
+
+import java.util.ArrayList;
+import java.util.*;
+import java.util.concurrent.*;
+
+//: concurrency/BasicThreads.java
+// The most basic use of the Thread class.
+class Fibonacci implements Callable<Long> {
+	int n;
+
+	Fibonacci(int n) {
+		this.n = n;
+	}
+
+	@Override
+	public Long call() {
+		long former = 1;
+		long current = 1;
+		long result = 2;
+		for (int i = 2; i < n; i++) {
+
+			long next = former + current;
+			former = current;
+			current = next;
+			result += current;
+
+		}
+		return result;
+	}
+}
+// 1,1,2,3,5,8,13,21,34,54
+public class BasicThreads {
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
+		ExecutorService exec = Executors.newCachedThreadPool();
+		List<Future<Long>> lfl = new ArrayList<Future<Long>>();
+		for (int i = 0; i < 3; i++) {
+			lfl.add(exec.submit(new Fibonacci(30+ i)));// there is an interesting property about sum(Fibonacci),that is , sum(n) = sum(n-1)+ sum(n-2)+1
+		}
+		for (Future<Long> fl : lfl) {
+			try {
+				System.out.println(fl.get() + "");
+			} catch (Exception e) {
+				e.getMessage();
+			} finally {
+				exec.shutdown();
+			}
+		}
+
+	}
+}
