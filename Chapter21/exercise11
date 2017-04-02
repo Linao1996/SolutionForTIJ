@@ -1,0 +1,89 @@
+package pac1;
+
+//: concurrency/EvenChecker.java
+import java.util.concurrent.*;
+
+public class EvenChecker implements Runnable {
+	private IntGenerator generator;
+	private int id;
+
+	public EvenChecker(IntGenerator g, int id) {
+		generator = g;
+		this.id = id;
+	}
+
+	public void run() {
+		while (!generator.isCanceled()) {
+			int val[] = generator.next();
+			if (val[0] > val[1]) {
+				System.out.println("mix is bigger than max: " + val[0] + " " + val[1] + " id number: " + id);
+				generator.cancel(); // Cancels all EvenCheckers
+			}
+		}
+	}
+
+	// Test any type of IntGenerator:
+	public static void test(IntGenerator gp, int count) {
+		System.out.println("Press Control-C to exit");
+		ExecutorService exec = Executors.newCachedThreadPool();
+		for (int i = 0; i < count; i++)
+			exec.execute(new EvenChecker(gp, i));
+		exec.shutdown();
+	}
+
+	// Default value for count:
+	public static void test(IntGenerator gp) {
+		test(gp, 10);
+	}
+} /// :~
+
+package pac1;
+
+import java.util.Random;
+
+//: concurrency/EvenGenerator.java
+// When threads collide.
+
+public class EvenGenerator extends IntGenerator {
+	Random rand = new Random();
+	private int min = 0;
+	private int max = 0;
+
+	public synchronized int[] next() {
+		min = rand.nextInt(100);
+		max = rand.nextInt(100);
+		if (min > max) {
+			int middle = min;
+			min = max;
+			max = middle;
+		}
+		int[] a = { min, max };
+		return a;
+	}
+
+	public static void main(String[] args) {
+		EvenChecker.test(new EvenGenerator(),5);
+	}
+} /*
+	 * Output: (Sample) Press Control-C to exit 89476993 not even! 89476993 not
+	 * even!
+	 */// :~
+   
+   
+   package pac1;
+//: concurrency/IntGenerator.java
+
+public abstract class IntGenerator {
+	private volatile boolean canceled = false;
+
+	public abstract int[] next();
+
+	// Allow this to be canceled:
+	public void cancel() {
+		canceled = true;
+	}
+
+	public boolean isCanceled() {
+		return canceled;
+	}
+} /// :~
