@@ -27,13 +27,15 @@ public class Fibonacci {
 		ExecutorService exec = Executors.newCachedThreadPool();
 		Future<Long> f = exec.submit(t);
 		return f;
+	}
 
+	Long getSum(int n) throws InterruptedException, ExecutionException{
+		return this.runTask(n).get();
 	}
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		Fibonacci f = new Fibonacci();
-		Future<Long> fu = f.runTask(5);
-		System.out.println(fu.get());
+		System.out.println(f.getSum(5));
 
 	}
 }
