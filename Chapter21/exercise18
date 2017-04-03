@@ -1,0 +1,57 @@
+package pac1;
+import java.util.*;
+import java.util.concurrent.*;
+
+class NonTask {
+    public void f() {
+        System.out.print("NonTask Begins: ");
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            System.out.print("Sleep was interrupted \n");
+            System.out.println(e);
+        }
+    }
+}
+public class Task implements Runnable{
+    NonTask n = new NonTask();
+    @Override
+    public void run(){
+        n.f();
+    }
+    public static void main(String[] args){
+        Task t = new Task();
+        ExecutorService exec =Executors.newCachedThreadPool();
+        exec.execute(t);
+        exec.shutdownNow();
+    }
+}
+ }
+}package pac1;
+import java.util.*;
+import java.util.concurrent.*;
+
+class NonTask {
+    public void f() {
+        System.out.print("NonTask Begins: ");
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            System.out.print("Sleep was interrupted \n");
+            System.out.println(e);
+        }
+    }
+}
+public class Task implements Runnable{
+    NonTask n = new NonTask();
+    @Override
+    public void run(){
+        n.f();
+    }
+    public static void main(String[] args){
+        Task t = new Task();
+        ExecutorService exec =Executors.newCachedThreadPool();
+        exec.execute(t);
+        exec.shutdownNow();
+    }
+}
