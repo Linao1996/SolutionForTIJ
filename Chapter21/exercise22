@@ -1,0 +1,52 @@
+package pac2;
+
+
+import java.util.*;
+import java.util.concurrent.*;
+
+class A implements Runnable {
+    boolean awake = false;
+
+    @Override
+    public void run() {
+        System.out.println("A is going to wait");
+        try {
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println("A is done sleeping!");
+            awake = true;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class B implements Runnable {
+    A a;
+
+    B(A a) {
+        this.a = a;
+    }
+
+
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println("Seriously?");// it seems that if deleting this line, you will never get into that busy waiting loop.
+            if (a.awake == true) {
+                a.awake = false;
+                break;
+            }
+        }
+        System.out.println("Out of busy waiting");
+
+    }
+}
+
+public class Ex21 {
+    public static void main(String[] args) {
+        ExecutorService exec = Executors.newCachedThreadPool();
+        A a = new A();
+        exec.execute(a);
+        exec.execute(new B(a));
+    }
+}
