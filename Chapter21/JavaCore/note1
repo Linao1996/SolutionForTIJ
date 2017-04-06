@@ -1,0 +1,44 @@
+package pac1;
+
+import java.util.concurrent.TimeUnit;
+
+class A implements Runnable {
+
+    @Override
+    public void run() {
+        try {
+            while (true) {// because sleep is within loop, so you don't have to test interrupted().
+                System.out.println("hello!");
+                TimeUnit.MILLISECONDS.sleep(10); //once the interrupt flag is set, sleep would throw InterruptedException, thereby getting out of while loop
+            }
+        } catch (InterruptedException e) {
+            System.out.println("a IS INTERRUPTED");
+        }
+    }
+}
+
+class B implements Runnable {
+    public void run() {
+        while (!Thread.currentThread().interrupted()) {//need interrupted() to get out of while loop
+            System.out.println("hi");
+        }
+        System.out.println("B was interrupted!");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        A a = new A();
+        B b = new B();
+        Thread t = new Thread(b);
+        Thread t1 = new Thread(a);
+        t.start();
+        try {
+            TimeUnit.MILLISECONDS.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        t.interrupt();
+    }
+
+}
