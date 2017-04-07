@@ -1,0 +1,37 @@
+package pac1;//: gui/Button2.java
+// Responding to button presses.
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+import pac1.SwingConsole;
+
+public class Ex5 extends JFrame{
+    private JButton b1 = new JButton("Button 1"),
+            b2 = new JButton("Button 2"),
+            b3 = new JButton("Button 3");
+    private JTextField text = new JTextField(10);
+    private ActionListener al = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            text.setText(((JButton) actionEvent.getSource()).getText());
+        }
+    };
+
+    public Ex5() {
+        b1.addActionListener(al);
+        b2.addActionListener(al);
+        b3.addActionListener(al);
+        setLayout(new FlowLayout());
+        add(b1);
+        add(b2);
+        add(b3);
+        add(text);
+
+    }
+
+    public static void main(String[] args) {
+        SwingConsole.run(new Ex5(), 300, 200);
+    }
+}
