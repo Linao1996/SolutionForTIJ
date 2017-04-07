@@ -1,0 +1,93 @@
+package pac1;
+
+import jdk.nashorn.internal.scripts.JO;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Arrays;
+
+public class VerifyPassword extends JFrame {
+    private JPasswordField jp = new JPasswordField(10);
+    private TextField ta = new TextField(12);
+    private JPasswordField confirmJp = new JPasswordField(10);
+    private JLabel jl = new JLabel("password: ");
+    private JLabel username = new JLabel("username:");
+    private JLabel confirmJl = new JLabel("confirm password");
+    private JButton button = new JButton("Log in");
+    private JCheckBox box = new JCheckBox("remember password");
+
+    ActionListener onClickButton = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            char[] actual = {'1', '2', '3'};
+            char[] getpass = jp.getPassword();
+            char[] getpass2 = confirmJp.getPassword();
+            String[] usernames = {
+                    "Lisa", "John", "Mary"
+            };
+            String username = ta.getText();
+            boolean in = false;
+            for (int i = 0; i < usernames.length; i++) {
+                if (usernames[i].equals(username)) {
+                    in = true;
+                }
+            }
+            if (!in) {
+                JOptionPane.showMessageDialog(null, "username does not exist");
+            } else if (!Arrays.equals(getpass, getpass2)) {
+                JOptionPane.showMessageDialog(null, "Passwords do not match");
+
+            } else if (Arrays.equals(actual, getpass)) {
+                JOptionPane.showMessageDialog(null, "Confirmed");
+            } else {
+                JOptionPane.showMessageDialog(null, "Wrong PassWord");
+            }
+        }
+    };
+
+    public VerifyPassword() {
+        setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.WEST;
+        constraints.insets = new Insets(10, 10, 10, 10);
+/* This field specifies the external padding of the component,
+the minimum amount of space between the component and the edges of its display area.u */
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        add(username, constraints);
+
+        constraints.gridx = 1;
+        add(ta, constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        add(jl, constraints);
+
+        constraints.gridx = 1;
+        add(jp, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        add(confirmJl, constraints);
+
+        constraints.gridx = 1;
+        add(confirmJp, constraints);//        setLayout(new GridLayout();
+
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+//        constraints.gridwidth = 2;
+//        constraints.anchor = GridBagConstraints.CENTER;
+        add(button, constraints);
+        constraints.gridx = 0;
+        add(box,constraints);
+
+
+        button.addActionListener(onClickButton);
+//        jp.addActionListener(a);
+
+    }
+
+    public static void main(String[] args) {
+        SwingConsole.run(new VerifyPassword(), 300, 400);
+    }
+}
