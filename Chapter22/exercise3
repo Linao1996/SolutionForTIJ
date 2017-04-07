@@ -7,7 +7,6 @@ public class SubmitSwingProgram extends JFrame {
     JLabel label;
 
     public SubmitSwingProgram() {
-        SwingConsole.run(this, 300, 200);
         this.label = new JLabel("First label");
         this.add(label);
 
@@ -19,6 +18,8 @@ public class SubmitSwingProgram extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 ssp = new SubmitSwingProgram();
+                SwingConsole.run(this, 300, 200);
+
             }
         });
         TimeUnit.SECONDS.sleep(1);
