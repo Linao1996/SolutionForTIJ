@@ -1,0 +1,59 @@
+package pac1;//: strings/TestRegularExpression.java
+// Allows you to easily try out regular expressions.
+// {Args: abcabcabcdefabc "abc+" "(abc)+" "(abc){2,}" }
+
+import javax.swing.*;
+import java.util.regex.*;
+import java.util.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+import static net.mindview.util.Print.*;
+
+public class TestRegularExpressionGUI extends JFrame {
+    private JButton b1 = new JButton("Start!"),
+            b2 = new JButton("Clear!");
+    private JTextArea a1 = new JTextArea(20, 30),
+            a2 = new JTextArea(20, 30);
+    private JTextField f = new JTextField(20);
+
+    public TestRegularExpressionGUI() {
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String text = a1.getText();
+                String regex = f.getText();
+                Pattern p = Pattern.compile(regex);
+                Matcher m = p.matcher(text);
+//                if(!m.find()){
+//                    a2.setText("Macher: No result!");
+//
+//                }
+                while (m.find()) {
+                    a2.setText("Matcher: " + m.group()  );
+                }
+
+            }
+        });
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                a2.setText("");
+
+            }
+        });
+        setLayout(new FlowLayout());
+        add(b1);
+        add(b2);
+        add(new JScrollPane(a1));
+        add(new JScrollPane(a2));
+        add(new JScrollPane(f));
+
+    }
+    public static void main(String[] args){
+        SwingConsole.run(new TestRegularExpressionGUI(),100,200);
+
+    }
+
+}
