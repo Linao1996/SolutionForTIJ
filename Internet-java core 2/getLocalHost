@@ -1,0 +1,15 @@
+package pac1;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class LocalHost{
+    public static void main(String[] args) throws Exception {
+        InetAddress local  = InetAddress.getLocalHost();
+        System.out.println(local);
+
+    }
+
+
+}
