@@ -1,0 +1,59 @@
+package pac1;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class URLConnectionTest {
+    public static void main(String[] args) throws Exception {
+        System.out.println("Begining");
+        try {
+            String urlName;
+            if (args.length > 0) {
+                urlName = args[0];
+            } else {
+                urlName = "http://horstmann.com";
+            }
+            URL url = new URL(urlName);
+            URLConnection connection = url.openConnection();
+            if (args.length > 2) {//in case the site entails password
+                String username = args[1];
+                String password = args[2];
+                String input = username + ":" + password;
+                String encoding = new sun.misc.BASE64Encoder().encode(input.getBytes());
+                connection.setRequestProperty("Authorization", "Basic" + encoding);//??? what does Basic means?
+            }
+            connection.connect();
+            Map<String, List<String>> headers = connection.getHeaderFields();
+            System.out.println("==========================================");
+            System.out.println("Header:");
+            for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
+                String key = entry.getKey();
+                for (String value : entry.getValue()) {
+                    System.out.println(key + ":" + value);
+                }
+            }
+            System.out.println("=========================================");//getting some of the properties.
+            System.out.println("getContentType:" + connection.getContentType());
+            System.out.println("getContentLength:" +connection.getContentLength());
+            System.out.println("=========================================");
+            Scanner in = new Scanner(connection.getInputStream());
+            while(in.hasNextLine()){
+                System.out.println(in.nextLine());
+            }
+
+        }catch (IOException e){
+            System.out.println("IO exception");
+        }
+//        URL url = new URL("http://www.google.com");
+//        URLConnection connection = url.openConnection();
+//        connection.connect();
+//        InputStream inputStream = connection.getInputStream();
+//        Scanner in = new Scanner(inputStream);
+//        new sun.misc.BASE64Decoder().encode(input.getBytes);
+//        while (in.hasNextLine()) {
+//            System.out.println(in.nextLine());
+//        }
+    }
+
+}
