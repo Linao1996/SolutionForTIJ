@@ -1,0 +1,15 @@
+package pac3;
+
+class A {
+    static int i = 47;
+}
+
+public class A3 {
+   static void addA(){
+       A.i++;
+   }
+   public static void main(String[] args){
+       A3.addA();
+       System.out.println(A.i);
+   }
+}
