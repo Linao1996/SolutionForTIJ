@@ -1,0 +1,29 @@
+package pac3;
+
+
+public class A3 {
+    static String getBinary(int n) {
+        String s = "";
+        while (n != 0) {
+            s += (n % 2);
+            n /= 2;
+        }
+        return reverse(s);
+    }
+
+    static String reverse(String s) {
+        String s2 = "";
+        for (int i = s.length() - 1; i >= 0; i--) {
+            char c = s.charAt(i);
+            s2+=c;
+        }
+        return s2;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(getBinary(1029));
+
+    }
+
+}
