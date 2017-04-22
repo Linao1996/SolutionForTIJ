@@ -1,0 +1,52 @@
+package pac3;
+
+import java.util.Arrays;
+import java.util.HashSet;
+
+public class VampireNumbers {
+    public static int numDigits(long num) {
+        return Long.toString(num).length();
+    }
+
+
+    private static boolean fangCheck(long orig, long fang1, long fang2) {
+        if (Long.toString(orig).endsWith("00")) {
+            return false;
+        }
+        int origLen = numDigits(orig);
+        int fang1Len = numDigits(fang1);
+        int fang2Len = numDigits(fang2);
+        if (origLen / 2 != fang1Len || origLen / 2 != fang2Len) {
+            return false;
+        }
+        byte[] origBytes = Long.toString(orig).getBytes();
+        byte[] fangBytes = (Long.toString(fang1) + Long.toString(fang2)).getBytes();
+        Arrays.sort(origBytes);
+        Arrays.sort(fangBytes);
+        return Arrays.equals(fangBytes,origBytes);
+//        return origBytes.equals(fangBytes);//always return false, since equals on an array compare the reference rather than
+        // its contents;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(fangCheck(1260, 60, 21));
+        HashSet<Long> vamps = new HashSet<Long>();
+        for (long i = 10; vamps.size() <= 25; i++) {
+            if ((numDigits(i) % 2 != 0)) {
+                i = i * 10 - 1;
+                continue;
+            }
+            for(long fang1 = 2; fang1 <= Math.sqrt(i); fang1++){
+                if(i % fang1 != 0){
+                    continue;
+                }
+                long fang2 = i / fang1;
+                if(fangCheck(i,fang1,fang2)){
+                    vamps.add(i);
+                    System.out.println(i + ":" + fang1 + "*" + fang2);
+                }
+            }
+        }
+    }
+}
