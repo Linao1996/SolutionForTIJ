@@ -16,7 +16,7 @@ public class ListIteration {
 
 	static void getintegers22() {
 		ListIterator<Integer> it1 = integers1.listIterator(5);
-		ListIterator<Integer> it2 = integers1.listIterator();
+		ListIterator<Integer> it2 = integers2.listIterator();
 		for (int i = 0; i < integers1.size(); i++) {
 			integers2.add(0);
 		}
