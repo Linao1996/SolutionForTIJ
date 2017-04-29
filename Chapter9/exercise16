@@ -1,57 +1,49 @@
-package pac1;
+package pac2;//: interfaces/RandomWords.java
+// Implementing an interface to conform to a method.
 
-interface Cycle {
-	void roll();
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+import java.nio.*;
+import java.util.*;
+
+import static net.mindview.util.Print.print;
+
+class RandomChar {
+    private static Random rand = new Random();
+
+    public char next() {
+        return (char) rand.nextInt(128);
+    }
+
+    public static void main(String[] args) {
+        RandomChar randChar = new RandomChar();
+        for (int i = 0; i < 10; i++) {
+            print(randChar.next() + "");
+        }
+    }
 }
 
-interface CycleFactory {
-	Cycle service();
-}
+public class AdaptedRandomChar extends RandomChar implements Readable {
+    private int count;
 
+    public AdaptedRandomChar(int count) {
+        this.count = count;
+    }
 
-
-class UnicycleFactory implements CycleFactory {
-	public Cycle service() {
-		return new Cycle() {
-			public void roll() {
-				System.out.println("Unicycle rolling!");
-			}
-		};
-	}
-}
-
-
-
-class BicycleFactory implements CycleFactory {
-	public Cycle service() {
-		return new Cycle(){
-			public void roll(){
-				System.out.println("Bicycle rolling");
-			}
-		};
-	}
-}
-
-
-class TricycleFactory implements CycleFactory {
-	public Cycle service() {
-		return new Cycle(){
-			public void roll(){
-				System.out.println("Tricycle rolling");
-			}
-		};
-	}
-}
-
-public class CycleServices {
-	public static void cycleservice(CycleFactory cf) {
-		Cycle c = cf.service();
-		c.roll();
-	}
-
-	public static void main(String[] args) {
-		cycleservice(new UnicycleFactory());
-		cycleservice(new BicycleFactory());
-		cycleservice(new TricycleFactory());
-	}
+    @Override
+    public int read(@NotNull CharBuffer charBuffer) throws IOException {
+        if (count-- == 0) {
+            return -1;
+        }
+        String result = next() + "";
+        charBuffer.append(result);
+        return result.length();
+    }
+    public static void main(String[] args){
+        Scanner s = new Scanner(new AdaptedRandomChar(10));
+        while (s.hasNext()) {
+            print(s.next());
+        }
+    }
 }
